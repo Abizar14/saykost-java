@@ -93,11 +93,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ACER\Documents\NetBeansProjects\PMI_4A_2024_226651010\src\main\java\UAS\img\icons8_home_50px.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -195,11 +190,6 @@
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\ACER\Documents\NetBeansProjects\PMI_4A_2024_226651010\src\main\java\UAS\img\icons8_tv_30px.png"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -271,11 +261,6 @@
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\ACER\Documents\NetBeansProjects\PMI_4A_2024_226651010\src\main\java\UAS\Pallete\icons8_apartment_30px.png"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
