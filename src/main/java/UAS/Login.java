@@ -16,8 +16,10 @@ import javax.swing.JOptionPane;
  * @author ACER
  */
 public class Login extends javax.swing.JFrame {
-    
+
+//  !what this variabels does
     int xx, xy;
+
     /**
      * Creates new form Login
      */
@@ -45,6 +47,7 @@ public class Login extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setEnabled(false);
         setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -180,13 +183,21 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
         xx = evt.getX();
         xy = evt.getY();
-        
+
     }//GEN-LAST:event_formMousePressed
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         // TODO add your handling code here:
         int x = evt.getXOnScreen();
@@ -194,38 +205,41 @@ public class Login extends javax.swing.JFrame {
         this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_formMouseDragged
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        try
-        {
+        try {
             String sqlAdmin = "SELECT * FROM admin where username ='" + txtUsername.getText() + "'AND password ='" + txtPassword.getText() + "'";
             String sqlCustomer = "SELECT * FROM customer where username = '" + txtUsername.getText() + "'AND password = '" + txtPassword.getText() + "'";
-            
-            Connection conn = (Connection)Koneksi.koneksiDB();
+
+            Connection conn = (Connection) Koneksi.koneksiDB();
             PreparedStatement pstAdmin = conn.prepareStatement(sqlAdmin);
             PreparedStatement pstCustomer = conn.prepareStatement(sqlCustomer);
             ResultSet rsAdmin = pstAdmin.executeQuery(sqlAdmin);
             ResultSet rsCustomer = pstCustomer.executeQuery(sqlCustomer);
-            
-            if(rsAdmin.next())
-            {
-                if(txtUsername.getText().equals(rsAdmin.getString("username")) && txtPassword.getText().equals(rsAdmin.getString("password")))
-                {
-                    JOptionPane.showMessageDialog(null,"Berhasil Login Sebagai Admin");
+
+            if (rsAdmin.next()) {
+                if (txtUsername.getText().equals(rsAdmin.getString("username")) && txtPassword.getText().equals(rsAdmin.getString("password"))) {
+                    JOptionPane.showMessageDialog(null, "Berhasil Login Sebagai Admin");
                     DashboardAdmin da = new DashboardAdmin();
                     da.setVisible(true);
                     this.dispose();
-                } 
-            } else if(rsCustomer.next())
-            {
-                if(txtUsername.getText().equals(rsCustomer.getString("username")) && txtPassword.getText().equals(rsCustomer.getString("password")))
-                {
-                    JOptionPane.showMessageDialog(null,"Berhasil Login Sebagai Customer");
+                }
+            } else if (rsCustomer.next()) {
+                if (txtUsername.getText().equals(rsCustomer.getString("username")) && txtPassword.getText().equals(rsCustomer.getString("password"))) {
+                    JOptionPane.showMessageDialog(null, "Berhasil Login Sebagai Customer");
                     DashboardCustomer dc = new DashboardCustomer();
                     dc.setVisible(true);
                     this.dispose();
@@ -233,57 +247,77 @@ public class Login extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Username or passowrd wrong");
             }
-            
-        } catch (HeadlessException | SQLException e){
+
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
         // TODO add your handling code here:
         String username = txtUsername.getText();
-        
-        if(username.equals("Username"))
-        {
+
+        if (username.equals("Username")) {
             txtUsername.setText("");
         }
     }//GEN-LAST:event_txtUsernameFocusGained
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
         // TODO add your handling code here:
         String username = txtUsername.getText();
-        
-        if(username.equals("") || username.equals("Username"))
-        {
+
+        if (username.equals("") || username.equals("Username")) {
             txtUsername.setText("Username");
         }
     }//GEN-LAST:event_txtUsernameFocusLost
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
         // TODO add your handling code here:
         String password = txtPassword.getText();
-        
-        if(password.equals("Password"))
-        {
+
+        if (password.equals("Password")) {
             txtPassword.setText("");
         }
-        
+
     }//GEN-LAST:event_txtPasswordFocusGained
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
         // TODO add your handling code here:
         String password = txtPassword.getText();
-        
-        if(password.equals("") || password.equals("Password"))
-        {
+
+        if (password.equals("") || password.equals("Password")) {
             txtPassword.setText("Password");
         }
     }//GEN-LAST:event_txtPasswordFocusLost
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
@@ -295,7 +329,7 @@ public class Login extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

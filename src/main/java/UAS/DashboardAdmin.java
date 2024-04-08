@@ -5,7 +5,6 @@
 package UAS;
 
 import java.awt.Color;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -260,53 +259,75 @@ public class DashboardAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void btnDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseEntered
         // TODO add your handling code here:
-        pnMain.setBackground(new Color(250,250,250));
-        pnLine.setBackground(new Color(0,51,153));
+        pnMain.setBackground(new Color(250, 250, 250));
+        pnLine.setBackground(new Color(0, 51, 153));
     }//GEN-LAST:event_btnDashboardMouseEntered
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void btnDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseClicked
         // TODO add your handling code here:
-        pnMain.setBackground(new Color(250,250,250));
-        pnLine.setBackground(new Color(0,51,153));
-        
+        pnMain.setBackground(new Color(250, 250, 250));
+        pnLine.setBackground(new Color(0, 51, 153));
+
         pn_utama.removeAll();
         pn_utama.add(new MenuDashboard());
         pn_utama.repaint();
         pn_utama.revalidate();
-        
-        
-        
+
     }//GEN-LAST:event_btnDashboardMouseClicked
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void btnKostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKostMouseClicked
         // TODO add your handling code here:
 //        pnKost.setBackground(new Color(250,250,250));
 //        pnLineKost.setBackground(new Color(0,51,153));
-//        
+//
 //        pn_utama.removeAll();
 //        pn_utama.add(new MenuDashboard());
 //        pn_utama.repaint();
 //        pn_utama.revalidate();
     }//GEN-LAST:event_btnKostMouseClicked
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void btnKostMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKostMouseEntered
         // TODO add your handling code here:
-        pnKost.setBackground(new Color(250,250,250));
-        pnLineKost.setBackground(new Color(0,51,153));
+        pnKost.setBackground(new Color(250, 250, 250));
+        pnLineKost.setBackground(new Color(0, 51, 153));
     }//GEN-LAST:event_btnKostMouseEntered
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void btnDashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseExited
         // TODO add your handling code here:
-        pnMain.setBackground(new Color(255,255,255));
-        pnLine.setBackground(new Color(255,255,255));
+        pnMain.setBackground(new Color(255, 255, 255));
+        pnLine.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnDashboardMouseExited
 
+    /**
+     * !add docs of what this method does
+     *
+     */
     private void btnKostMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKostMouseExited
         // TODO add your handling code here:
-        pnKost.setBackground(new Color(255,255,255));
-        pnLineKost.setBackground(new Color(255,255,255));
+        pnKost.setBackground(new Color(255, 255, 255));
+        pnLineKost.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnKostMouseExited
 
     /**
@@ -316,7 +337,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
