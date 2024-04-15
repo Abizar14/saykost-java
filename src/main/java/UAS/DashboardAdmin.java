@@ -53,8 +53,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
         jLabel1.setText("SayKost");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ACER\\Documents\\NetBeansProjects\\PMI_4A_2024_226651010\\src\\main\\java\\UAS\\img\\icons8_home_50px.png")); // NOI18N
-
         jLabel3.setBackground(new java.awt.Color(204, 204, 204));
         jLabel3.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 153, 153));
@@ -93,8 +91,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 btnDashboardMouseExited(evt);
             }
         });
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\ACER\\Documents\\NetBeansProjects\\PMI_4A_2024_226651010\\src\\main\\java\\UAS\\img\\icons8_tv_30px.png")); // NOI18N
 
         javax.swing.GroupLayout pnMainLayout = new javax.swing.GroupLayout(pnMain);
         pnMain.setLayout(pnMainLayout);
@@ -147,8 +143,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 btnKostMouseExited(evt);
             }
         });
-
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\ACER\\Documents\\NetBeansProjects\\PMI_4A_2024_226651010\\src\\main\\java\\UAS\\Pallete\\icons8_apartment_30px.png")); // NOI18N
 
         javax.swing.GroupLayout pnKostLayout = new javax.swing.GroupLayout(pnKost);
         pnKost.setLayout(pnKostLayout);
@@ -209,7 +203,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(pnKost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(366, Short.MAX_VALUE))
+                .addContainerGap(387, Short.MAX_VALUE))
         );
 
         getContentPane().add(pn_kiri, java.awt.BorderLayout.LINE_START);
