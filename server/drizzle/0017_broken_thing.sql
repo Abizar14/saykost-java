@@ -1,0 +1,1 @@
+ALTER TABLE `boarding_houses` MODIFY COLUMN `id` int AUTO_INCREMENT;

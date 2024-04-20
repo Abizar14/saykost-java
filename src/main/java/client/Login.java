@@ -5,6 +5,7 @@
 package client;
 
 import services.auth.Authentication;
+import services.user.entities.UserEntity;
 
 import javax.swing.*;
 
@@ -215,27 +216,22 @@ public class Login extends javax.swing.JFrame {
 	private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
 		try {
 			String username = txtUsername.getText();
-			String password = txtPassword.getText();
+			String password = String.valueOf(txtPassword.getPassword());
 
-			String loginAdmin = Authentication.loginAdmin(username, password);
-			String loginCustomer = Authentication.loginCustomer(username, password);
-
-//          validate if the user is admin
-			if (loginAdmin != null) {
-				JOptionPane.showMessageDialog(null, "Kamu berhasil login " + loginAdmin);
-				DashboardAdmin da = new DashboardAdmin();
-				da.setVisible(true);
-				this.dispose();
-			}
-
-//          validate if the user is customer
-			else if (loginCustomer != null) {
-				JOptionPane.showMessageDialog(null, "Kamu berhasil login " + loginCustomer);
-				DashboardCustomer dc = new DashboardCustomer();
-				dc.setVisible(true);
-				this.dispose();
+			UserEntity user = Authentication.loginUser(username, password);
+			if (user.getRole() == null) {
+				JOptionPane.showMessageDialog(null, "Invalid Username and Password");
 			} else {
-				JOptionPane.showMessageDialog(null, "Kayaknya ada yang salah dari username atau password kamu, silahkan coba lagi!");
+				JOptionPane.showMessageDialog(null, "Selamat Datang " + user.getFullName());
+				if (user.getRole().equals("admin")) {
+					DashboardAdmin dashboardAdmin = new DashboardAdmin();
+					dashboardAdmin.setVisible(true);
+					dispose();
+				} else if (user.getRole().equals("customer")) {
+					DashboardCustomer dashboardCustomer = new DashboardCustomer();
+					dashboardCustomer.setVisible(true);
+					dispose();
+				}
 			}
 
 		} catch (Exception e) {

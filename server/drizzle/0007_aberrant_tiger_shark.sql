@@ -1,0 +1,1 @@
+ALTER TABLE `transactions` MODIFY COLUMN `id` int AUTO_INCREMENT;
