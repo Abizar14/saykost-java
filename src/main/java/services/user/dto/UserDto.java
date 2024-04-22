@@ -1,19 +1,11 @@
-package services.user.entities;
+package services.user.dto;
 
-public class UserEntity {
+public class UserDto {
 
 	private String fullName;
 	private String phoneNumber;
-	private String password;
 	private String username;
 	private String role;
-
-	public UserEntity(String fullName, String phoneNumber, String password, String username) {
-		this.fullName = fullName;
-		this.phoneNumber = phoneNumber;
-		this.password = password;
-		this.username = username;
-	}
 
 	public String getFullName() {
 		return fullName;
@@ -45,13 +37,5 @@ public class UserEntity {
 
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 }

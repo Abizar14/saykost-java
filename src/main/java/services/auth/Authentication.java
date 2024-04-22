@@ -2,7 +2,7 @@ package services.auth;
 
 import services.database.Db;
 import services.user.UserService;
-import services.user.entities.UserEntity;
+import services.user.dto.UserDto;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -26,9 +26,9 @@ public class Authentication {
 	 * @return The {@code UserEntity} object representing the authenticated user, or null if the validation fails.
 	 * @throws {@code RuntimeException} If an exception occurs during the validation process.
 	 */
-	public static UserEntity loginUser(String username, String password) {
+	public static UserDto loginUser(String username, String password) {
 		try {
-			UserEntity user = UserService.validateUser(username, password);
+			UserDto user = UserService.validateUser(username, password);
 //			if (user != null) {
 //				return null;
 //			}

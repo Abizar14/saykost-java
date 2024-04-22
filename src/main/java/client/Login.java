@@ -5,7 +5,7 @@
 package client;
 
 import services.auth.Authentication;
-import services.user.entities.UserEntity;
+import services.user.dto.UserDto;
 
 import javax.swing.*;
 
@@ -218,7 +218,7 @@ public class Login extends javax.swing.JFrame {
 			String username = txtUsername.getText();
 			String password = String.valueOf(txtPassword.getPassword());
 
-			UserEntity user = Authentication.loginUser(username, password);
+			UserDto user = Authentication.loginUser(username, password);
 			if (user.getRole() == null) {
 				JOptionPane.showMessageDialog(null, "Invalid Username and Password");
 			} else {
