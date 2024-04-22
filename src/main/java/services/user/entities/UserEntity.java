@@ -15,6 +15,10 @@ public class UserEntity {
 		this.username = username;
 	}
 
+	public UserEntity() {
+
+	}
+
 	public String getFullName() {
 		return fullName;
 	}

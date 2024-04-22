@@ -4,14 +4,21 @@
  */
 package client;
 
-import services.auth.Authentication;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
+import org.netbeans.lib.awtextra.AbsoluteLayout;
+import services.user.UserService;
+import services.user.entities.UserEntity;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author ACER
  */
-public class Register extends javax.swing.JFrame {
+public class Register extends JFrame {
 
 	int xx, xy;
 
@@ -20,7 +27,7 @@ public class Register extends javax.swing.JFrame {
 	 */
 	public Register() {
 		initComponents();
-		image.setIcon(new javax.swing.ImageIcon("./img/SAY1.png"));
+		image.setIcon(new ImageIcon("./img/SAY1.png"));
 	}
 
 	/**
@@ -32,225 +39,225 @@ public class Register extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
-		jPanel1 = new javax.swing.JPanel();
-		txtUsername = new javax.swing.JTextField();
-		jLabel1 = new javax.swing.JLabel();
-		btnRegister = new javax.swing.JButton();
-		txtPassword = new javax.swing.JPasswordField();
-		jLabel6 = new javax.swing.JLabel();
-		txtNohp = new javax.swing.JTextField();
-		txtNama = new javax.swing.JTextField();
-		image = new javax.swing.JLabel();
-		jPanel2 = new javax.swing.JPanel();
-		jLabel2 = new javax.swing.JLabel();
-		pnLogin = new javax.swing.JPanel();
-		jLabel3 = new javax.swing.JLabel();
+		jPanel1 = new JPanel();
+		txtUsername = new JTextField();
+		jLabel1 = new JLabel();
+		btnRegister = new JButton();
+		txtPassword = new JPasswordField();
+		jLabel6 = new JLabel();
+		txtNohp = new JTextField();
+		txtNama = new JTextField();
+		image = new JLabel();
+		jPanel2 = new JPanel();
+		jLabel2 = new JLabel();
+		pnLogin = new JPanel();
+		jLabel3 = new JLabel();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setUndecorated(true);
-		addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-			public void mouseDragged(java.awt.event.MouseEvent evt) {
+		addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent evt) {
 				formMouseDragged(evt);
 			}
 		});
-		addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mousePressed(java.awt.event.MouseEvent evt) {
+		addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent evt) {
 				formMousePressed(evt);
 			}
 		});
-		getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+		getContentPane().setLayout(new AbsoluteLayout());
 
-		jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+		jPanel1.setBackground(new Color(255, 255, 255));
 
-		txtUsername.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+		txtUsername.setFont(new Font("Poppins", 0, 12)); // NOI18N
 		txtUsername.setText("Username");
-		txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
-			public void focusGained(java.awt.event.FocusEvent evt) {
+		txtUsername.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent evt) {
 				txtUsernameFocusGained(evt);
 			}
 
-			public void focusLost(java.awt.event.FocusEvent evt) {
+			public void focusLost(FocusEvent evt) {
 				txtUsernameFocusLost(evt);
 			}
 		});
-		txtUsername.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		txtUsername.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				txtUsernameActionPerformed(evt);
 			}
 		});
 
-		jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
+		jLabel1.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
 				jLabel1MouseClicked(evt);
 			}
 		});
 
-		btnRegister.setBackground(new java.awt.Color(51, 51, 255));
-		btnRegister.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-		btnRegister.setForeground(new java.awt.Color(255, 255, 255));
+		btnRegister.setBackground(new Color(51, 51, 255));
+		btnRegister.setFont(new Font("Poppins", 1, 12)); // NOI18N
+		btnRegister.setForeground(new Color(255, 255, 255));
 		btnRegister.setText("Register");
-		btnRegister.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		btnRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				btnRegisterActionPerformed(evt);
 			}
 		});
 
 		txtPassword.setText("Password\n");
-		txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
-			public void focusGained(java.awt.event.FocusEvent evt) {
+		txtPassword.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent evt) {
 				txtPasswordFocusGained(evt);
 			}
 
-			public void focusLost(java.awt.event.FocusEvent evt) {
+			public void focusLost(FocusEvent evt) {
 				txtPasswordFocusLost(evt);
 			}
 		});
-		txtPassword.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		txtPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				txtPasswordActionPerformed(evt);
 			}
 		});
 
-		jLabel6.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
-		jLabel6.setForeground(new java.awt.Color(0, 51, 204));
+		jLabel6.setFont(new Font("Poppins", 1, 18)); // NOI18N
+		jLabel6.setForeground(new Color(0, 51, 204));
 		jLabel6.setText("Buat Akun\n");
 
-		txtNohp.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+		txtNohp.setFont(new Font("Poppins", 0, 12)); // NOI18N
 		txtNohp.setText("No Hp");
-		txtNohp.addFocusListener(new java.awt.event.FocusAdapter() {
-			public void focusGained(java.awt.event.FocusEvent evt) {
+		txtNohp.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent evt) {
 				txtNohpFocusGained(evt);
 			}
 
-			public void focusLost(java.awt.event.FocusEvent evt) {
+			public void focusLost(FocusEvent evt) {
 				txtNohpFocusLost(evt);
 			}
 		});
-		txtNohp.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		txtNohp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				txtNohpActionPerformed(evt);
 			}
 		});
 
-		txtNama.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+		txtNama.setFont(new Font("Poppins", 0, 12)); // NOI18N
 		txtNama.setText("Nama");
-		txtNama.addFocusListener(new java.awt.event.FocusAdapter() {
-			public void focusGained(java.awt.event.FocusEvent evt) {
+		txtNama.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent evt) {
 				txtNamaFocusGained(evt);
 			}
 
-			public void focusLost(java.awt.event.FocusEvent evt) {
+			public void focusLost(FocusEvent evt) {
 				txtNamaFocusLost(evt);
 			}
 		});
-		txtNama.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		txtNama.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				txtNamaActionPerformed(evt);
 			}
 		});
 
-		image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		image.setHorizontalAlignment(SwingConstants.CENTER);
 
-		jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+		jPanel2.setBackground(new Color(255, 255, 255));
 
 		jLabel2.setText("Sudah Mempuntai Akun?");
 
-		pnLogin.setBackground(new java.awt.Color(255, 255, 255));
-		pnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
+		pnLogin.setBackground(new Color(255, 255, 255));
+		pnLogin.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
 				pnLoginMouseClicked(evt);
 			}
 		});
 
-		jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-		jLabel3.setForeground(new java.awt.Color(35, 77, 167));
+		jLabel3.setFont(new Font("Segoe UI", 1, 12)); // NOI18N
+		jLabel3.setForeground(new Color(35, 77, 167));
 		jLabel3.setText("Login");
 
-		javax.swing.GroupLayout pnLoginLayout = new javax.swing.GroupLayout(pnLogin);
+		GroupLayout pnLoginLayout = new GroupLayout(pnLogin);
 		pnLogin.setLayout(pnLoginLayout);
 		pnLoginLayout.setHorizontalGroup(
-				pnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnLoginLayout.createSequentialGroup()
-								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				pnLoginLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+						.addGroup(GroupLayout.Alignment.TRAILING, pnLoginLayout.createSequentialGroup()
+								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(jLabel3)
 								.addContainerGap())
 		);
 		pnLoginLayout.setVerticalGroup(
-				pnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				pnLoginLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addComponent(jLabel3)
 		);
 
-		javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+		GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
 		jPanel2.setLayout(jPanel2Layout);
 		jPanel2Layout.setHorizontalGroup(
-				jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addGroup(jPanel2Layout.createSequentialGroup()
 								.addComponent(jLabel2)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(pnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(pnLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		jPanel2Layout.setVerticalGroup(
-				jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addComponent(jLabel2)
-						.addComponent(pnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addComponent(pnLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 		);
 
-		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+		GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
 		jPanel1Layout.setHorizontalGroup(
-				jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+						.addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(jLabel1))
 						.addGroup(jPanel1Layout.createSequentialGroup()
-								.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 										.addGroup(jPanel1Layout.createSequentialGroup()
 												.addGap(249, 249, 249)
-												.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-														.addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-														.addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-														.addComponent(txtNohp, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-														.addComponent(txtNama, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+												.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+														.addComponent(txtUsername, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+														.addComponent(txtPassword, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+														.addComponent(txtNohp, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+														.addComponent(txtNama, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
 														.addGroup(jPanel1Layout.createSequentialGroup()
 																.addGap(32, 32, 32)
-																.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-																		.addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-																		.addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+																.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+																		.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+																		.addComponent(btnRegister, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)))))
 										.addGroup(jPanel1Layout.createSequentialGroup()
 												.addGap(259, 259, 259)
-												.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+												.addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 														.addGroup(jPanel1Layout.createSequentialGroup()
 																.addGap(55, 55, 55)
 																.addComponent(jLabel6)
 																.addGap(68, 68, 68))
-														.addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
+														.addComponent(image, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE))))
 								.addContainerGap(282, Short.MAX_VALUE))
 		);
 		jPanel1Layout.setVerticalGroup(
-				jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addGroup(jPanel1Layout.createSequentialGroup()
 								.addContainerGap()
 								.addComponent(jLabel1)
 								.addGap(9, 9, 9)
 								.addComponent(jLabel6)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(image, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 								.addGap(18, 18, 18)
-								.addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtNama, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 								.addGap(27, 27, 27)
-								.addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 								.addGap(29, 29, 29)
-								.addComponent(txtNohp, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtNohp, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 								.addGap(28, 28, 28)
-								.addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 								.addGap(18, 18, 18)
-								.addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnRegister, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addContainerGap(28, Short.MAX_VALUE))
 		);
 
-		getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 470));
+		getContentPane().add(jPanel1, new AbsoluteConstraints(0, 0, 770, 470));
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
@@ -260,7 +267,7 @@ public class Register extends javax.swing.JFrame {
 	 *
 	 * @param evt the MouseEvent object representing the mouse press event
 	 */
-	private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+	private void formMousePressed(MouseEvent evt) {//GEN-FIRST:event_formMousePressed
 		xx = evt.getX();
 		xy = evt.getY();
 
@@ -271,7 +278,7 @@ public class Register extends javax.swing.JFrame {
 	 *
 	 * @param evt the MouseEvent object representing the mouse drag event
 	 */
-	private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+	private void formMouseDragged(MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
 		int x = evt.getXOnScreen();
 		int y = evt.getYOnScreen();
 		this.setLocation(x - xx, y - xy);
@@ -282,7 +289,7 @@ public class Register extends javax.swing.JFrame {
 	 *
 	 * @param evt the MouseEvent object representing the mouse click event
 	 */
-	private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+	private void jLabel1MouseClicked(MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
 		dispose();
 	}//GEN-LAST:event_jLabel1MouseClicked
 
@@ -295,34 +302,24 @@ public class Register extends javax.swing.JFrame {
 	 *
 	 * @param evt the ActionEvent object representing the button click event
 	 */
-	private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+	private void btnRegisterActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
 		try {
-			String nohp = txtNohp.getText();
-			String nama = txtNama.getText();
-			String username = txtUsername.getText();
-			String password = txtPassword.getText();
+			UserEntity user = new UserEntity();
+			user.setFullName(txtNama.getText());
+			user.setPhoneNumber(txtNohp.getText());
+			user.setUsername(txtUsername.getText());
+			user.setPassword(txtPassword.getText());
 
-			String loginAdmin = Authentication.loginAdmin(username, password);
-			String loginCustomer = Authentication.loginCustomer(username, password);
+			String registeredUser = UserService.registerCustomer(user);
 
-//          validate if the user is admin
-			if (loginAdmin != null) {
-				JOptionPane.showMessageDialog(null, "Kamu berhasil login " + loginAdmin);
-				DashboardAdmin da = new DashboardAdmin();
-				da.setVisible(true);
-				this.dispose();
-			}
-
-//          validate if the user is customer
-			else if (loginCustomer != null) {
-				JOptionPane.showMessageDialog(null, "Kamu berhasil login " + loginCustomer);
-				DashboardCustomer dc = new DashboardCustomer();
-				dc.setVisible(true);
-				this.dispose();
+			if (registeredUser == null) {
+				JOptionPane.showMessageDialog(null, "Username sudah terdaftar");
 			} else {
-				JOptionPane.showMessageDialog(null, "Kayaknya ada yang salah dari username atau password kamu, silahkan coba lagi!");
+				JOptionPane.showMessageDialog(null, registeredUser);
+				Login loginPage = new Login();
+				loginPage.setVisible(true);
+				this.dispose();
 			}
-
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
@@ -333,7 +330,7 @@ public class Register extends javax.swing.JFrame {
 	 *
 	 * @param evt the FocusEvent object representing the focus event
 	 */
-	private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
+	private void txtUsernameFocusGained(FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
 		String username = txtUsername.getText();
 
 		if (username.equals("Username")) {
@@ -346,7 +343,7 @@ public class Register extends javax.swing.JFrame {
 	 *
 	 * @param evt the FocusEvent object representing the focus event
 	 */
-	private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
+	private void txtUsernameFocusLost(FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
 		String username = txtUsername.getText();
 
 		if (username.isEmpty() || username.equals("Username")) {
@@ -359,7 +356,7 @@ public class Register extends javax.swing.JFrame {
 	 *
 	 * @param evt the ActionEvent object representing the action event
 	 */
-	private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+	private void txtPasswordActionPerformed(ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
 		// TODO add your handling code here:
 	}//GEN-LAST:event_txtPasswordActionPerformed
 
@@ -368,7 +365,7 @@ public class Register extends javax.swing.JFrame {
 	 *
 	 * @param evt the FocusEvent object representing the focus event
 	 */
-	private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
+	private void txtPasswordFocusGained(FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
 		String password = txtPassword.getText();
 
 		if (password.equals("Password")) {
@@ -382,7 +379,7 @@ public class Register extends javax.swing.JFrame {
 	 *
 	 * @param evt the FocusEvent object representing the focus event
 	 */
-	private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
+	private void txtPasswordFocusLost(FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
 		String password = txtPassword.getText();
 
 		if (password.equals("") || password.equals("Password")) {
@@ -391,11 +388,11 @@ public class Register extends javax.swing.JFrame {
 	}//GEN-LAST:event_txtPasswordFocusLost
 
 
-	private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+	private void txtUsernameActionPerformed(ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
 		// TODO add your handling code here:
 	}//GEN-LAST:event_txtUsernameActionPerformed
 
-	private void txtNohpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNohpFocusGained
+	private void txtNohpFocusGained(FocusEvent evt) {//GEN-FIRST:event_txtNohpFocusGained
 		// TODO add your handling code here:
 		String nohp = txtNohp.getText();
 		if (nohp.equals("No Hp")) {
@@ -403,7 +400,7 @@ public class Register extends javax.swing.JFrame {
 		}
 	}//GEN-LAST:event_txtNohpFocusGained
 
-	private void txtNohpFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNohpFocusLost
+	private void txtNohpFocusLost(FocusEvent evt) {//GEN-FIRST:event_txtNohpFocusLost
 		// TODO add your handling code here:
 		String nohp = txtNohp.getText();
 
@@ -412,11 +409,11 @@ public class Register extends javax.swing.JFrame {
 		}
 	}//GEN-LAST:event_txtNohpFocusLost
 
-	private void txtNohpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNohpActionPerformed
+	private void txtNohpActionPerformed(ActionEvent evt) {//GEN-FIRST:event_txtNohpActionPerformed
 		// TODO add your handling code here:
 	}//GEN-LAST:event_txtNohpActionPerformed
 
-	private void txtNamaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNamaFocusGained
+	private void txtNamaFocusGained(FocusEvent evt) {//GEN-FIRST:event_txtNamaFocusGained
 		// TODO add your handling code here:
 		String nama = txtNama.getText();
 		if (nama.equals("Nama")) {
@@ -424,7 +421,7 @@ public class Register extends javax.swing.JFrame {
 		}
 	}//GEN-LAST:event_txtNamaFocusGained
 
-	private void txtNamaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNamaFocusLost
+	private void txtNamaFocusLost(FocusEvent evt) {//GEN-FIRST:event_txtNamaFocusLost
 		// TODO add your handling code here:
 		String nama = txtNama.getText();
 
@@ -433,11 +430,11 @@ public class Register extends javax.swing.JFrame {
 		}
 	}//GEN-LAST:event_txtNamaFocusLost
 
-	private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
+	private void txtNamaActionPerformed(ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
 		// TODO add your handling code here:
 	}//GEN-LAST:event_txtNamaActionPerformed
 
-	private void pnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnLoginMouseClicked
+	private void pnLoginMouseClicked(MouseEvent evt) {//GEN-FIRST:event_pnLoginMouseClicked
 		// TODO add your handling code here:
 		Login lg = new Login();
 		lg.setVisible(true);
@@ -454,20 +451,20 @@ public class Register extends javax.swing.JFrame {
 		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
 		 */
 		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+			for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (UnsupportedLookAndFeelException ex) {
+			Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		//</editor-fold>
 		//</editor-fold>
@@ -479,7 +476,7 @@ public class Register extends javax.swing.JFrame {
 		//</editor-fold>
 
 		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				new Register().setVisible(true);
 			}
@@ -487,18 +484,18 @@ public class Register extends javax.swing.JFrame {
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton btnRegister;
-	private javax.swing.JLabel image;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
-	private javax.swing.JLabel jLabel3;
-	private javax.swing.JLabel jLabel6;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JPanel jPanel2;
-	private javax.swing.JPanel pnLogin;
-	private javax.swing.JTextField txtNama;
-	private javax.swing.JTextField txtNohp;
-	private javax.swing.JPasswordField txtPassword;
-	private javax.swing.JTextField txtUsername;
+	private JButton btnRegister;
+	private JLabel image;
+	private JLabel jLabel1;
+	private JLabel jLabel2;
+	private JLabel jLabel3;
+	private JLabel jLabel6;
+	private JPanel jPanel1;
+	private JPanel jPanel2;
+	private JPanel pnLogin;
+	private JTextField txtNama;
+	private JTextField txtNohp;
+	private JPasswordField txtPassword;
+	private JTextField txtUsername;
 	// End of variables declaration//GEN-END:variables
 }
