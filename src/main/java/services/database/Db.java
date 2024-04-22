@@ -6,20 +6,20 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Db {
-	private static Connection mysqlkonek;
+	private static Connection connection;
 
-	public static Connection connection() throws SQLException {
-		if (mysqlkonek == null) {
+	public static Connection getConnection() throws SQLException {
+		if (connection == null) {
 			try {
-				String DB = "jdbc:mysql://localhost:3306/uas_java"; // delta_db database
+				String url = "jdbc:mysql://localhost:3306/uas_java"; // database url
 				String user = "root"; // user database
 				String pass = ""; // password database
 				DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-				mysqlkonek = DriverManager.getConnection(DB, user, pass);
+				connection = DriverManager.getConnection(url, user, pass);
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Connection to database Failed : " + e);
 			}
 		}
-		return mysqlkonek;
+		return connection;
 	}
 }
