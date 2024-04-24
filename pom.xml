@@ -8,8 +8,8 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source> <!-- change with compiler version that you have -->
-        <maven.compiler.target>21</maven.compiler.target> <!-- change with compiler version that you have -->
+        <maven.compiler.source>20</maven.compiler.source> <!-- change with compiler version that you have -->
+        <maven.compiler.target>20</maven.compiler.target> <!-- change with compiler version that you have -->
         <exec.mainClass>services.UAS</exec.mainClass>
     </properties>
     <dependencies>
