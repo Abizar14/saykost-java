@@ -5,7 +5,10 @@
 package client.Customer;
 
 import javax.swing.ImageIcon;
+import org.jetbrains.annotations.ApiStatus;
+import raven.swing.AvatarIcon;
 import services.boarding_houses.entities.BoardingHouseEntity;
+
 
 /**
  *
@@ -22,7 +25,7 @@ public class Card extends javax.swing.JPanel {
         this.data = data;
         initComponents();
         
-        lbl_img.setIcon(new ImageIcon("./img/kos1w.jpg"));
+        lbl_img.setIcon(new AvatarIcon(data.getImage(), 179, 150, 10));
         lblNama.setText(data.getName());
         lblHarga.setText(String.valueOf(data.getPrice()));
         lblKategori.setText(data.getCategory());

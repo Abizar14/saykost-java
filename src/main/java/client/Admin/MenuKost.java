@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import raven.swing.AvatarIcon;
 
 /**
  * @author ACER
@@ -542,7 +543,7 @@ public class MenuKost extends javax.swing.JPanel {
 				// Create an ImageIcon from the selected file
 				ImageIcon ic = new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath());
 				// Set the ImageIcon as the icon of the label
-				labelImage.setIcon(ic);
+				labelImage.setIcon(new AvatarIcon(ic, 232, 109, 10));
 				// Set the name of the selected file in the text field
 				jTextField1.setText(fileChooser.getSelectedFile().getName());
 				// Disable the text field to prevent editing
