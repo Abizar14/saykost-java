@@ -1,7 +1,7 @@
 package services.boarding_houses.entities;
 
 public class BoardingHouseEntity {
-        private int id;
+	private int id;
 	private String name;
 	private String image;
 	private String size;
@@ -100,11 +100,11 @@ public class BoardingHouseEntity {
 		this.createdAt = createdAt;
 	}
 
-    public int getId() {
-        return id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 }
