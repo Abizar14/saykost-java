@@ -4,6 +4,8 @@
  */
 package client.Admin;
 
+import services.boarding_houses.BoardingHouseService;
+
 /**
  * @author ACER
  */
@@ -14,6 +16,9 @@ public class MenuDashboard extends javax.swing.JPanel {
      */
     public MenuDashboard() {
         initComponents();
+        countDataBoardingHouse();
+        countDataCustomer();
+//        countDataTransaction();
     }
 
     /**
@@ -27,21 +32,21 @@ public class MenuDashboard extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        txtAdmin = new javax.swing.JLabel();
+        lblCustomer = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblBanyakCustomer = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomer = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        lblKost = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblBanyakKost = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
+        lblTransaksi = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        lblBanyakTransaksi = new javax.swing.JLabel();
 
         setLayout(new java.awt.CardLayout());
 
@@ -49,13 +54,13 @@ public class MenuDashboard extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 153));
 
-        txtAdmin.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        txtAdmin.setForeground(new java.awt.Color(255, 255, 255));
-        txtAdmin.setText("Customer");
+        lblCustomer.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        lblCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        lblCustomer.setText("Customer");
 
-        jLabel3.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("5");
+        lblBanyakCustomer.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        lblBanyakCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        lblBanyakCustomer.setText("5");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -65,9 +70,9 @@ public class MenuDashboard extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAdmin)
+                .addComponent(lblCustomer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(lblBanyakCustomer)
                 .addGap(16, 16, 16))
         );
         jPanel2Layout.setVerticalGroup(
@@ -76,8 +81,8 @@ public class MenuDashboard extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblBanyakCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -101,13 +106,13 @@ public class MenuDashboard extends javax.swing.JPanel {
 
         jPanel5.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel12.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Kost");
+        lblKost.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        lblKost.setForeground(new java.awt.Color(255, 255, 255));
+        lblKost.setText("Kost");
 
-        jLabel14.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("5");
+        lblBanyakKost.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        lblBanyakKost.setForeground(new java.awt.Color(255, 255, 255));
+        lblBanyakKost.setText("5");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -117,9 +122,9 @@ public class MenuDashboard extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
+                .addComponent(lblKost)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                .addComponent(jLabel14)
+                .addComponent(lblBanyakKost)
                 .addGap(16, 16, 16))
         );
         jPanel5Layout.setVerticalGroup(
@@ -128,20 +133,20 @@ public class MenuDashboard extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblKost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblBanyakKost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel15.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Transaksi");
+        lblTransaksi.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        lblTransaksi.setForeground(new java.awt.Color(255, 255, 255));
+        lblTransaksi.setText("Transaksi");
 
-        jLabel17.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("5");
+        lblBanyakTransaksi.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        lblBanyakTransaksi.setForeground(new java.awt.Color(255, 255, 255));
+        lblBanyakTransaksi.setText("5");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -151,9 +156,9 @@ public class MenuDashboard extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel15)
+                .addComponent(lblTransaksi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                .addComponent(jLabel17)
+                .addComponent(lblBanyakTransaksi)
                 .addGap(16, 16, 16))
         );
         jPanel6Layout.setVerticalGroup(
@@ -162,8 +167,8 @@ public class MenuDashboard extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTransaksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblBanyakTransaksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -218,20 +223,33 @@ public class MenuDashboard extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblBanyakCustomer;
+    private javax.swing.JLabel lblBanyakKost;
+    private javax.swing.JLabel lblBanyakTransaksi;
+    private javax.swing.JLabel lblCustomer;
+    private javax.swing.JLabel lblKost;
+    private javax.swing.JLabel lblTransaksi;
     private javax.swing.JTable tblCustomer;
-    private javax.swing.JLabel txtAdmin;
     // End of variables declaration//GEN-END:variables
+
+    private void countDataBoardingHouse() {
+        BoardingHouseService countDataKost = new BoardingHouseService();
+        int jumlahData = countDataKost.countBoardingHouse(); // Panggil metode untuk menghitung jumlah data
+        lblBanyakKost.setText(String.valueOf(jumlahData)); // Tetapkan hasilnya ke label
+//        lblBanyakKost.setText(String.valueOf(countDataKost.j));
+    }
+
+    private void countDataCustomer() {
+        BoardingHouseService dataCustomer = new BoardingHouseService();
+        int customerCount = dataCustomer.countCustomer();
+        lblBanyakCustomer.setText(String.valueOf(customerCount)); // Tetapkan hasilnya ke label
+    }
 }

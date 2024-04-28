@@ -56,6 +56,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
         pn_utama = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         pn_kiri.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -432,6 +437,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
         pnTransaksi.setBackground(new Color(255, 255, 255));
         pnLineTransaksi.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnTransaksiMouseExited
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        pn_utama.removeAll();
+        pn_utama.add(new MenuDashboard());
+        pn_utama.repaint();
+        pn_utama.revalidate();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
