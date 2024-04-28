@@ -12,6 +12,8 @@ public class Utils {
 	 * @param title         The title of the dialog.
 	 * @param detailMessage The message to be displayed.
 	 * @param imageString   The path to the image file.
+	 * @param width         The desired width of the image.
+	 * @param height        The desired height of the image.
 	 */
 	public static void showMessageDialog(String title, String detailMessage, String imageString, int width, int height) {
 		// Load the animated GIF
