@@ -1,6 +1,7 @@
 package services.boarding_houses.entities;
 
 public class BoardingHouseEntity {
+	private int id;
 	private String name;
 	private String image;
 	private String size;
@@ -10,18 +11,6 @@ public class BoardingHouseEntity {
 	private int quantity;
 	private String category;
 	private String createdAt;
-
-	public BoardingHouseEntity(String name, String image, String size, int price, String address, String description, int quantity, String category, String createdAt) {
-		this.name = name;
-		this.image = image;
-		this.size = size;
-		this.price = price;
-		this.address = address;
-		this.description = description;
-		this.quantity = quantity;
-		this.category = category;
-		this.createdAt = createdAt;
-	}
 
 	public BoardingHouseEntity() {
 
@@ -97,5 +86,13 @@ public class BoardingHouseEntity {
 
 	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
