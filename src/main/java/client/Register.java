@@ -4,6 +4,7 @@
  */
 package client;
 
+import client.utils.Utils;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
 import org.netbeans.lib.awtextra.AbsoluteLayout;
 import services.user.UserService;
@@ -181,11 +182,11 @@ public class Register extends JFrame {
 								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(jLabel3)
 								.addContainerGap())
-		);
+										);
 		pnLoginLayout.setVerticalGroup(
 				pnLoginLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addComponent(jLabel3)
-		);
+									  );
 
 		GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
 		jPanel2.setLayout(jPanel2Layout);
@@ -195,12 +196,12 @@ public class Register extends JFrame {
 								.addComponent(jLabel2)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(pnLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-		);
+										);
 		jPanel2Layout.setVerticalGroup(
 				jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addComponent(jLabel2)
 						.addComponent(pnLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		);
+									  );
 
 		GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
@@ -232,7 +233,7 @@ public class Register extends JFrame {
 																.addGap(68, 68, 68))
 														.addComponent(image, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE))))
 								.addContainerGap(282, Short.MAX_VALUE))
-		);
+										);
 		jPanel1Layout.setVerticalGroup(
 				jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addGroup(jPanel1Layout.createSequentialGroup()
@@ -255,7 +256,7 @@ public class Register extends JFrame {
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 								.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addContainerGap(28, Short.MAX_VALUE))
-		);
+									  );
 
 		getContentPane().add(jPanel1, new AbsoluteConstraints(0, 0, 770, 470));
 
@@ -312,16 +313,17 @@ public class Register extends JFrame {
 
 			String registeredUser = UserService.registerCustomer(user);
 
-			if (registeredUser == null) {
-				JOptionPane.showMessageDialog(null, "Username sudah terdaftar");
+			if (!registeredUser.contains("success")) {
+				Utils.showMessageDialog("Something went wrong", registeredUser, "./img/warning.gif", 120,
+						120);
 			} else {
-				JOptionPane.showMessageDialog(null, registeredUser);
+				Utils.showMessageDialog("Success", registeredUser, "./img/success.gif", 100, 100);
 				Login loginPage = new Login();
 				loginPage.setVisible(true);
 				this.dispose();
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			Utils.showMessageDialog("Something went wrong", e.getMessage(), "./img/doraemon-sad.gif", 210, 180);
 		}
 	}//GEN-LAST:event_btnRegisterActionPerformed
 

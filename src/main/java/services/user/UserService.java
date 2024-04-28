@@ -1,5 +1,6 @@
 package services.user;
 
+import client.utils.Utils;
 import org.jetbrains.annotations.Nullable;
 import services.database.Db;
 import services.user.dto.UserDto;
@@ -52,6 +53,15 @@ public class UserService {
 	 */
 	public static @Nullable String registerCustomer(UserEntity user) {
 		try {
+//			check isNumberphone is only number and at least 10 characters
+			boolean isNumberPhone = user.getPhoneNumber().matches("\\d{10,}");
+//			check isUsername is not contains whitespaces and at least 5 characters
+			boolean isUsername = user.getUsername().matches("\\S{5,}");
+			if (!isUsername) {
+				return "Username harus terdiri dari setidaknya 5 karakter tanpa spasi";
+			} else if (!isNumberPhone) {
+				return "Nomor telepon tidak valid";
+			}
 			String sql = "INSERT INTO users(full_name, phone_number, username, password, role) VALUES('"
 					+ user.getFullName() + "', '" + user.getPhoneNumber() + "', '" + user.getUsername() + "', '"
 					+ user.getPassword() + "', 'customer')";
@@ -64,6 +74,9 @@ public class UserService {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(registerCustomer(new UserEntity("waksunari", "08123456789", "waksunari", "waksunariganteng")));
+		Utils.showMessageDialog("Something went wrong", "Customer registered successfully", "./img/warning.gif", 120,
+				120);
+
 	}
+
 }

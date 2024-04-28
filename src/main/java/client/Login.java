@@ -6,10 +6,9 @@ package client;
 
 import client.Admin.DashboardAdmin;
 import client.Customer.DashboardCustomer;
+import client.utils.Utils;
 import services.auth.Authentication;
 import services.user.dto.UserDto;
-
-import javax.swing.*;
 
 /**
  * @author ACER
@@ -314,22 +313,21 @@ public class Login extends javax.swing.JFrame {
 
 			UserDto user = Authentication.loginUser(username, password);
 			if (user.getRole() == null) {
-				JOptionPane.showMessageDialog(null, "Invalid Username and Password");
+				Utils.showMessageDialog("Something went wrong", "Invalid Username and Password, try again!", "./img" +
+								"/warning.gif", 120,
+						120);
 			} else {
-				JOptionPane.showMessageDialog(null, "Selamat Datang " + user.getFullName());
+				Utils.showMessageDialog("Success", "Selamat Datang " + user.getFullName(), "./img/success.gif", 100, 100);
 				if (user.getRole().equals("admin")) {
-					DashboardAdmin dashboardAdmin = new DashboardAdmin();
-					dashboardAdmin.setVisible(true);
+					new DashboardAdmin().setVisible(true);
 					dispose();
 				} else if (user.getRole().equals("customer")) {
-					DashboardCustomer dashboardCustomer = new DashboardCustomer();
-					dashboardCustomer.setVisible(true);
+					new DashboardCustomer().setVisible(true);
 					dispose();
 				}
 			}
-
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			Utils.showMessageDialog("Something went wrong", e.getMessage(), "./img/doraemon-sad.gif", 210, 180);
 		}
 	}//GEN-LAST:event_btnLoginActionPerformed
 
