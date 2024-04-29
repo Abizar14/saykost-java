@@ -28,21 +28,45 @@ public class TransactionService {
 	 * @return a string indicating the success or failure of the transaction creation
 	 */
 	public static @NotNull String create(@NotNull TransactionEntity transactionEntity, @NotNull int customerId) {
-		try {
-			//TODO: Add validation if username do not have transaction, set quantity in boarding house -1
-			if (!checkCustomerHaveTransactionInABoardingHouse(customerId, transactionEntity.getBoardingHouseId())) {
-				String sql = "UPDATE boarding_houses SET quantity = quantity - 1 WHERE id = '" + transactionEntity.getBoardingHouseId() + "'";
-				db.createStatement().execute(sql);
-			}
-			Timestamp createdAt = new Timestamp(System.currentTimeMillis());
-			String sql = "INSERT INTO transactions (rental_duration, total_price, created_at, boarding_houses_id, customer_id) " +
-					"VALUES" + "('" + transactionEntity.getRentalDuration() + "', '" + transactionEntity.getTotalPrice() + "', '" + createdAt + "', '" + transactionEntity.getBoardingHouseId() + "', '" + transactionEntity.getCustomerId() + "')";
-			db.createStatement().execute(sql);
-			return "Transaction created successfully";
-		} catch (SQLException e) {
-			System.out.println("Error " + e.getMessage());
-			return "Error " + e.getMessage();
-		}
+//		try {
+//			//TODO: Add validation if username do not have transaction, set quantity in boarding house -1
+//                                System.out.println(transactionEntity.getBoardingHouseId());
+//                                System.out.println(transactionEntity.getRentalDuration());
+//			if (!checkCustomerHaveTransactionInABoardingHouse(customerId, transactionEntity.getBoardingHouseId())) {
+//				String sql = "UPDATE boarding_houses SET quantity = quantity - 1 WHERE id = '" + transactionEntity.getBoardingHouseId() + "'";
+//				db.createStatement().execute(sql);
+//			}
+//			Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+//			String sql = "INSERT INTO transactions (rental_duration, total_price, created_at, boarding_houses_id, customer_id) " +
+//					"VALUES" + "('" + transactionEntity.getRentalDuration() + "', '" + transactionEntity.getTotalPrice() + "', '" + createdAt + "', '" + transactionEntity.getBoardingHouseId() + "', '" + transactionEntity.getCustomerId() + "')";
+//			db.createStatement().execute(sql);
+//			return "Transaction created successfully";
+//		} catch (SQLException e) {
+//			System.out.println("Error " + e.getMessage());
+//			return "Error " + e.getMessage();
+//		}
+try {
+        if (!checkCustomerHaveTransactionInABoardingHouse(customerId, transactionEntity.getBoardingHouseId())) {
+            String sql = "UPDATE boarding_houses SET quantity = quantity - 1 WHERE id = ?";
+            PreparedStatement pstmt = db.prepareStatement(sql);
+            pstmt.setInt(1, transactionEntity.getBoardingHouseId());
+            pstmt.executeUpdate();
+        }
+        Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+        String sql = "INSERT INTO transactions (rental_duration, total_price, created_at, boarding_houses_id, customer_id) " +
+                "VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement pstmt = db.prepareStatement(sql);
+        pstmt.setInt(1, transactionEntity.getRentalDuration());
+        pstmt.setInt(2, transactionEntity.getTotalPrice());
+        pstmt.setTimestamp(3, createdAt);
+        pstmt.setInt(4, transactionEntity.getBoardingHouseId());
+        pstmt.setInt(5, transactionEntity.getCustomerId());
+        pstmt.executeUpdate();
+        return "Transaction created successfully";
+    } catch (SQLException e) {
+        System.out.println("Error " + e.getMessage());
+        return "Error " + e.getMessage();
+    }
 	}
 
 	/**
@@ -88,6 +112,6 @@ public class TransactionService {
 
 	public static void main(String[] args) {
 		Timestamp createdAt = new Timestamp(System.currentTimeMillis());
-		System.out.println(create(new TransactionEntity(2, 40, createdAt, 15, 1), 1));
+		System.out.println(create(new TransactionEntity(2, 40, createdAt, 21, 8), 8));
 	}
 }

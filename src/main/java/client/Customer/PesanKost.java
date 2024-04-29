@@ -252,10 +252,15 @@ public class PesanKost extends javax.swing.JPanel {
         transactionData.setBoardingHouseId(data.getId());
         transactionData.setRentalDuration(qty);
         transactionData.setTotalPrice(totalPrice);
-        
-        String createdTransaction = TransactionService.create(transactionData, session.getUsername());
-            System.out.println(data.getId());
-        Utils.showMessageDialog("Sukses", "Pembayaran Sukses ", "./img/success.gif", 100, 100);
+        transactionData.setCustomerId(session.getId());
+            System.out.println(session.getId());
+        String createdTransaction = TransactionService.create(transactionData, session.getId());
+        System.out.println(data.getId());
+        if (!createdTransaction.contains("success")) {
+            Utils.showMessageDialog("Something went wrong", createdTransaction, "./img/warning.gif", 210, 180);
+            return;
+        }
+        Utils.showMessageDialog("Sukses", createdTransaction, "./img/success.gif", 100, 100);
         } catch (Exception e) {
             Utils.showMessageDialog("Something went wrong", e.getMessage(), "./img/warning.gif", 210, 180);
         }
