@@ -55,17 +55,14 @@ public class BoardingHouseService {
 
 	public static @NotNull String update(@NotNull BoardingHouseEntity boardingHouseEntity) {
 		try {
-//                        Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
+
+			Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
+
 			if (boardingHouseEntity.getImage().isBlank() || boardingHouseEntity.getImage() == null) {
 				return "Gambar tidak boleh kosong masszee";
 			}
 			String imageUploaded = uploadImage(new File(boardingHouseEntity.getImage()), boardingHouseEntity.getName());
-//            String sql = "UPDATE boarding_houses SET name = '" + boardingHouseEntity.getName() + "', image = '" + imageUploaded + "', size = '" + boardingHouseEntity.getSize() + "', price = '" + boardingHouseEntity.getPrice() + "', address = '" + boardingHouseEntity.getAddress() + "', description = '" + boardingHouseEntity.getDescription() + "', quantity = '" + boardingHouseEntity.getQuantity() + "', category = '" + boardingHouseEntity.getCategory() + "', created_at = '" + updatedAt + "' WHERE id = '" + boardingHouseEntity.getId() + "'";
-//            db.prepareStatement(sql).execute();
-			String sql = "UPDATE boarding_houses SET name = ?, image = ?, size = ?, price = ?, address = ?, description = ?, quantity = ?, category = ? WHERE id = ?";
-
-			System.out.println("ID YG DI UPDATE" + boardingHouseEntity.getId());
-			System.out.println("IMAGE APA NICH " + imageUploaded);
+			String sql = "UPDATE boarding_houses SET name = ?, image = ?, size = ?, price = ?, address = ?, description = ?, quantity = ?, created_at = ?, category = ? WHERE id = ?";
 
 			PreparedStatement pstmt = db.prepareStatement(sql);
 			pstmt.setString(1, boardingHouseEntity.getName());
@@ -75,11 +72,13 @@ public class BoardingHouseService {
 			pstmt.setString(5, boardingHouseEntity.getAddress());
 			pstmt.setString(6, boardingHouseEntity.getDescription());
 			pstmt.setInt(7, boardingHouseEntity.getQuantity());
-			pstmt.setString(8, boardingHouseEntity.getCategory());
-			pstmt.setInt(9, boardingHouseEntity.getId());
+			pstmt.setTimestamp(8, updatedAt);
+			pstmt.setString(9, boardingHouseEntity.getCategory());
+			pstmt.setInt(10, boardingHouseEntity.getId());
 
 			int success = pstmt.executeUpdate();
 			pstmt.close();
+
 			if (success > 0) {
 				return "berhasil mengupdate data maseh";
 			}
@@ -91,7 +90,7 @@ public class BoardingHouseService {
 		}
 	}
 
-	public static @NotNull String delete(@NotNull BoardingHouseEntity boardingHouseEntity) {
+	public static @NotNull String deleteById(@NotNull BoardingHouseEntity boardingHouseEntity) {
 		try {
 			String sql = "DELETE FROM boarding_houses WHERE id = ?";
 			PreparedStatement pstmt = db.prepareStatement(sql);
@@ -99,7 +98,7 @@ public class BoardingHouseService {
 
 			int success = pstmt.executeUpdate();
 			pstmt.close();
-
+			System.out.println(boardingHouseEntity.getImage());
 			if (success > 0) {
 				return "berhasil menghapus data";
 			} else {
@@ -148,6 +147,7 @@ public class BoardingHouseService {
 		return 0;
 	}
 
+
 	/**
 	 * Retrieves data from the database and returns it as a TableModel object.
 	 * The data includes information about boarding houses, such as their ID,
@@ -162,18 +162,30 @@ public class BoardingHouseService {
 	 */
 	public static @Nullable TableModel getData() {
 		try {
-			Statement stm = db.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT boarding_houses.id, boarding_houses.name as 'Nama Kos', "
-					+ "boarding_houses.image as Gambar, boarding_houses.size as Ukuran, boarding_houses.price as Harga,"
-					+ " boarding_houses"
-					+ ".address as Alamat, "
-					+ "boarding_houses.description as Deskripsi, boarding_houses.quantity as 'Jumlah Kamar', categories"
-					+ ".name as Kategori, "
-					+ "created_at\n"
-					+ "FROM boarding_houses\n"
-					+ "LEFT JOIN categories \n"
-					+ "\tON boarding_houses.category = categories.id  \n"
-					+ "ORDER BY `boarding_houses`.`created_at` DESC;");
+			java.sql.Statement stm = db.createStatement();
+			java.sql.ResultSet rs = stm.executeQuery("""
+					SELECT boarding_houses.id, boarding_houses.name as 'Nama Kos', boarding_houses.image as Gambar, boarding_houses.size as Ukuran, boarding_houses.price as Harga, boarding_houses.address as Alamat, boarding_houses.description as Deskripsi, boarding_houses.quantity as 'Jumlah Kamar', categories.name as Kategori, created_at
+					FROM boarding_houses
+					LEFT JOIN categories
+					\tON boarding_houses.category = categories.id
+					ORDER BY `boarding_houses`.`created_at` DESC;""");
+
+			return DbUtils.resultSetToTableModel(rs);
+		} catch (SQLException | HeadlessException e) {
+			System.out.println("Error" + e.getMessage());
+			return null;
+		}
+	}
+
+	public static @Nullable TableModel getDataKost() {
+		try {
+			java.sql.Statement stm = db.createStatement();
+			java.sql.ResultSet rs = stm.executeQuery("""
+					SELECT boarding_houses.id, boarding_houses.name as 'Nama Kos', boarding_houses.image as Gambar, boarding_houses.size as Ukuran, boarding_houses.price as Harga, boarding_houses.address as Alamat, boarding_houses.description as Deskripsi, boarding_houses.quantity as 'Jumlah Kamar', categories.name as Kategori, created_at
+					FROM boarding_houses
+					LEFT JOIN categories
+					\tON boarding_houses.category = categories.id
+					ORDER BY `boarding_houses`.`created_at` DESC;""");
 
 			return DbUtils.resultSetToTableModel(rs);
 		} catch (SQLException | HeadlessException e) {
@@ -250,5 +262,4 @@ public class BoardingHouseService {
 			return null;
 		}
 	}
-
 }
