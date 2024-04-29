@@ -320,7 +320,7 @@ public class Login extends javax.swing.JFrame {
 					dashboardAdmin.setVisible(true);
 					dispose();
 				} else if (user.getRole().equals("customer")) {
-					DashboardCustomer dashboardCustomer = new DashboardCustomer();
+					DashboardCustomer dashboardCustomer = new DashboardCustomer(user);
 					dashboardCustomer.setVisible(true);
 					dispose();
 				}

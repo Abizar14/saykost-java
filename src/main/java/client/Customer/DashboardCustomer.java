@@ -10,19 +10,22 @@ import java.util.ArrayList;
 import javax.swing.*;
 import services.boarding_houses.BoardingHouseService;
 import services.boarding_houses.entities.BoardingHouseEntity;
+import services.user.dto.UserDto;
 
 /**
  * @author ACER
  */
 public class DashboardCustomer extends javax.swing.JFrame {
     ArrayList<BoardingHouseEntity> listOfKos;
+    UserDto session;
 
 	/**
 	 * Creates new form DashboardUser
 	 */
-	public DashboardCustomer() {
+	public DashboardCustomer(UserDto session) {
 		initComponents();
                 // ngisi data
+                this.session = session;
                 listOfKos = BoardingHouseService.getDataToEntity();
                 lbl_icon.setIcon(new javax.swing.ImageIcon("./img/icons8_home_50px.png"));
                 iconkost.setIcon(new javax.swing.ImageIcon("./img/Apartment.png"));
@@ -30,7 +33,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
                 icontransaksi.setIcon(new javax.swing.ImageIcon("./img/Transaction.png"));
                 
                 
-                
+                lblFullname.setText("SELAMAT DATANG  " + session.getFullName() + "  ^o^");
                 Kost kost = new Kost();
                 
                 pn_utama.add(kost);
@@ -71,6 +74,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
         iconlogout = new javax.swing.JLabel();
         pn_kanan = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        lblFullname = new javax.swing.JLabel();
         pn_dasar = new javax.swing.JPanel();
         pn_utama = new javax.swing.JPanel();
 
@@ -296,15 +300,26 @@ public class DashboardCustomer extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 153));
 
+        lblFullname.setFont(new java.awt.Font("Poppins ExtraBold", 0, 18)); // NOI18N
+        lblFullname.setForeground(new java.awt.Color(255, 255, 255));
+        lblFullname.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblFullname.setText("Selamat Datang");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 815, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(lblFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(lblFullname)
+                .addGap(20, 20, 20))
         );
 
         pn_kanan.add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -325,7 +340,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
             pn_dasarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_dasarLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(pn_utama, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                .addComponent(pn_utama, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                 .addGap(15, 15, 15))
         );
 
@@ -409,36 +424,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-		/* Set the Nimbus look and feel */
-		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(DashboardCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(DashboardCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(DashboardCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(DashboardCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		//</editor-fold>
-		//</editor-fold>
-
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new DashboardCustomer().setVisible(true);
-			}
-		});
+		
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -452,6 +438,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblFullname;
     private javax.swing.JLabel lbl_icon;
     private javax.swing.JPanel pnLine;
     private javax.swing.JPanel pnLineTransaksi;

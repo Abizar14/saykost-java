@@ -54,7 +54,6 @@ ArrayList<BoardingHouseEntity> listOfKos;
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(688, 501));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -110,7 +109,7 @@ ArrayList<BoardingHouseEntity> listOfKos;
                 .addComponent(txtfld_serach, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(347, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,8 +121,6 @@ ArrayList<BoardingHouseEntity> listOfKos;
                 .addGap(10, 10, 10))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setMaximumSize(new java.awt.Dimension(770, 400));
         jPanel2.setPreferredSize(new java.awt.Dimension(770, 400));
@@ -134,15 +131,30 @@ ArrayList<BoardingHouseEntity> listOfKos;
         jScrollPane1.setPreferredSize(new java.awt.Dimension(200, 400));
 
         pnKost.setMinimumSize(new java.awt.Dimension(720, 420));
-        pnKost.setPreferredSize(new java.awt.Dimension(400, 610));
+        pnKost.setPreferredSize(new java.awt.Dimension(400, 623));
         pnKost.setRequestFocusEnabled(false);
         pnKost.setVerifyInputWhenFocusTarget(false);
-        pnKost.setLayout(new java.awt.GridLayout(2, 4, 10, 10));
+        pnKost.setLayout(new java.awt.GridLayout(2, 4));
         jScrollPane1.setViewportView(pnKost);
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 86, 760, 420));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(146, 146, 146))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtfld_serachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfld_serachActionPerformed

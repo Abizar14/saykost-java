@@ -1,7 +1,7 @@
 package services.user.dto;
 
 public class UserDto {
-
+        
 	private String fullName;
 	private String phoneNumber;
 	private String username;
