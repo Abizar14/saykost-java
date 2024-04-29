@@ -4,6 +4,7 @@
  */
 package client.Customer;
 
+
 import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.ImageIcon;
@@ -36,7 +37,7 @@ public class Card extends javax.swing.JPanel {
         NumberFormat formater = NumberFormat.getCurrencyInstance(myIndonesianLocale);
         return formater.format(number);
     }
-
+	
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always

@@ -1,7 +1,16 @@
 package services.user.dto;
 
 public class UserDto {
-        
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	private int id;
 	private String fullName;
 	private String phoneNumber;
 	private String username;

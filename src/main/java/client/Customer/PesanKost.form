@@ -281,6 +281,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Bayar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSimpanMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

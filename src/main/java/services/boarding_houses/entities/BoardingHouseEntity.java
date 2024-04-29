@@ -12,18 +12,6 @@ public class BoardingHouseEntity {
 	private String category;
 	private String createdAt;
 
-	public BoardingHouseEntity(String name, String image, String size, int price, String address, String description, int quantity, String category, String createdAt) {
-		this.name = name;
-		this.image = image;
-		this.size = size;
-		this.price = price;
-		this.address = address;
-		this.description = description;
-		this.quantity = quantity;
-		this.category = category;
-		this.createdAt = createdAt;
-	}
-
 	public BoardingHouseEntity() {
 
 	}

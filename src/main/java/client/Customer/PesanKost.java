@@ -188,6 +188,11 @@ public class PesanKost extends javax.swing.JPanel {
         btnSimpan.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
         btnSimpan.setText("Bayar");
+        btnSimpan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSimpanMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -230,6 +235,11 @@ public class PesanKost extends javax.swing.JPanel {
         DashboardCustomer.pn_utama.repaint();
         DashboardCustomer.pn_utama.revalidate();
     }//GEN-LAST:event_btnBatalMouseClicked
+
+    private void btnSimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnSimpanMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

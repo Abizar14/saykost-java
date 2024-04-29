@@ -4,17 +4,22 @@
  */
 package client.Customer;
 
+import services.transaction.TransactionService;
+import services.user.dto.UserDto;
+
 /**
  *
  * @author Bam
  */
 public class Transaksi extends javax.swing.JPanel {
-
+    UserDto session;
     /**
      * Creates new form Transaksi
      */
-    public Transaksi() {
+    public Transaksi(UserDto session) {
+        this.session = session;
         initComponents();
+        tblUSerTransaction.setModel(TransactionService.getTransactionsByUsernameTableModel(session.getUsername()));
     }
 
     /**

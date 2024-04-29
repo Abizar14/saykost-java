@@ -1,13 +1,11 @@
 package services.auth;
 
-import org.jetbrains.annotations.Nullable;
 import services.database.Db;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import services.user.UserService;
 import services.user.dto.UserDto;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class Authentication {
 	private final static Connection db;
@@ -31,15 +29,12 @@ public class Authentication {
 	 */
 	public static UserDto loginUser(String username, String password) {
 		try {
-			UserDto user = UserService.validateUser(username, password);
-//			if (user != null) {
-//				return null;
-//			}
-			return user;
+			return UserService.validateUser(username, password);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-    }
+	}
+
 	public static void main(String[] args) {
 	}
 }

@@ -122,7 +122,6 @@ public class BoardingHouseService {
 		return data;
 	}
 
-	;
 
 	/**
 	 * This method uploads an image file to {@code ./img/upload/} folder and returns the path of the uploaded image.

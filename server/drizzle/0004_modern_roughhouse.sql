@@ -1,0 +1,1 @@
+ALTER TABLE `boarding_houses` MODIFY COLUMN `customer_id` int NOT NULL;

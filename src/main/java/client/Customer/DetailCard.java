@@ -10,8 +10,9 @@ import javax.swing.ImageIcon;
 import raven.swing.AvatarIcon;
 import services.boarding_houses.entities.BoardingHouseEntity;
 
+import javax.swing.*;
+
 /**
- *
  * @author Bam
  */
 public class DetailCard extends javax.swing.JPanel {

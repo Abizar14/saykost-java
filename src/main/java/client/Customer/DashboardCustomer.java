@@ -380,7 +380,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
         pnLineTransaksi.setBackground(new Color(0, 51, 153));
 
         pn_utama.removeAll();
-        pn_utama.add(new Transaksi());
+        pn_utama.add(new Transaksi(session));
         pn_utama.repaint();
         pn_utama.revalidate();
     }//GEN-LAST:event_btnTransaksiMouseClicked
