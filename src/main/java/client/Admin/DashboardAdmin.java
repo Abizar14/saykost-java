@@ -17,6 +17,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
      */
     public DashboardAdmin() {
         initComponents();
+        iconSewaKost.setIcon(new javax.swing.ImageIcon("./img/icons8_home_50px.png"));
         btnDashboard.setIcon(new javax.swing.ImageIcon("./img/icons8_tv_30px.png"));
         btnKost.setIcon(new javax.swing.ImageIcon("./img/Apartment.png"));
         btnTransaksi.setIcon(new javax.swing.ImageIcon("./img/Transaction.png"));
@@ -34,7 +35,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         pn_kiri = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        iconSewaKost = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         pnMain = new javax.swing.JPanel();
@@ -244,7 +245,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addGroup(pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel3)
                         .addGroup(pn_kiriLayout.createSequentialGroup()
-                            .addComponent(jLabel2)
+                            .addComponent(iconSewaKost)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel1))
                         .addComponent(pnMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -258,7 +259,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGroup(pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pn_kiriLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(jLabel2))
+                        .addComponent(iconSewaKost))
                     .addGroup(pn_kiriLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel1)))
@@ -282,7 +283,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 153));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hi - Client", "Profile", "Logout", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hi - Admin", "Logout", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -294,7 +295,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(689, Short.MAX_VALUE)
+                .addContainerGap(685, Short.MAX_VALUE)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
@@ -485,9 +486,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel btnDashboard;
     private javax.swing.JLabel btnKost;
     private javax.swing.JLabel btnTransaksi;
+    private javax.swing.JLabel iconSewaKost;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

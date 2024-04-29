@@ -27,12 +27,13 @@ public class MenuKost extends javax.swing.JPanel {
     public boolean databaru;
     //	file image to be uploaded
     File imageFile;
+//    String prevImage;
 
     public MenuKost() {
         initComponents();
         databaru = true;
         tblKost.setModel(BoardingHouseService.getData());
-//        tblKostAwal.setModel(BoardingHouseService.getDataTabelAwal());
+        tblKostAwal.setModel(BoardingHouseService.getDataKost());
     }
 
     // method addData
@@ -120,12 +121,11 @@ public class MenuKost extends javax.swing.JPanel {
         panelView = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCustomer = new javax.swing.JTable();
+        tblKostAwal = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         btnTambah = new javax.swing.JButton();
-        btnHapus1 = new javax.swing.JButton();
         panelTambah = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -170,7 +170,7 @@ public class MenuKost extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel10.setText("Dashboard > Kost");
 
-        tblCustomer.setModel(new javax.swing.table.DefaultTableModel(
+        tblKostAwal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -181,7 +181,7 @@ public class MenuKost extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblCustomer);
+        jScrollPane1.setViewportView(tblKostAwal);
 
         jLabel11.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
 
@@ -201,16 +201,6 @@ public class MenuKost extends javax.swing.JPanel {
             }
         });
 
-        btnHapus1.setBackground(new java.awt.Color(255, 0, 51));
-        btnHapus1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        btnHapus1.setForeground(new java.awt.Color(255, 255, 255));
-        btnHapus1.setText("Hapus Kost");
-        btnHapus1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHapus1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelViewLayout = new javax.swing.GroupLayout(panelView);
         panelView.setLayout(panelViewLayout);
         panelViewLayout.setHorizontalGroup(
@@ -227,10 +217,7 @@ public class MenuKost extends javax.swing.JPanel {
                         .addGroup(panelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10)
                             .addGroup(panelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelViewLayout.createSequentialGroup()
-                                    .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btnHapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(panelViewLayout.createSequentialGroup()
                                     .addGap(317, 317, 317)
@@ -247,9 +234,7 @@ public class MenuKost extends javax.swing.JPanel {
                     .addComponent(jLabel19)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTambah)
-                    .addComponent(btnHapus1))
+                .addComponent(btnTambah)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel18)
                 .addGap(18, 18, 18)
@@ -532,11 +517,6 @@ public class MenuKost extends javax.swing.JPanel {
         panelMain.revalidate();
 	}//GEN-LAST:event_btnTambahActionPerformed
 
-	private void btnHapus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapus1ActionPerformed
-        // TODO add your handling code here:
-
-	}//GEN-LAST:event_btnHapus1ActionPerformed
-
 	private void btnDataKostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataKostActionPerformed
         // TODO add your handling code here:
         panelMain.removeAll();
@@ -636,6 +616,8 @@ public class MenuKost extends javax.swing.JPanel {
                 kostData.setId(Integer.parseInt(txtId.getText()));
                 kostData.setName(txtNamaKost.getText());
                 kostData.setImage(jTextField1.getText());
+
+//                String prevImage = jTextField1.getText();
                 kostData.setSize(txtUkuran.getText());
 
                 // Validate if the input for price is a number
@@ -742,7 +724,6 @@ public class MenuKost extends javax.swing.JPanel {
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnDataKost;
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnHapus1;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUpload;
@@ -774,8 +755,8 @@ public class MenuKost extends javax.swing.JPanel {
     private javax.swing.JPanel panelTambah;
     private javax.swing.JPanel panelView;
     private javax.swing.JSpinner spinnerQuantity;
-    private javax.swing.JTable tblCustomer;
     private javax.swing.JTable tblKost;
+    private javax.swing.JTable tblKostAwal;
     private javax.swing.JTextField txtAlamat;
     private javax.swing.JTextArea txtDeskripsi;
     private javax.swing.JTextField txtHarga;

@@ -5,6 +5,7 @@
 package client.Admin;
 
 import services.boarding_houses.BoardingHouseService;
+import services.user.UserService;
 
 /**
  * @author ACER
@@ -18,6 +19,7 @@ public class MenuDashboard extends javax.swing.JPanel {
         initComponents();
         countDataBoardingHouse();
         countDataCustomer();
+        tblCustomer.setModel(UserService.getDataUser());
 //        countDataTransaction();
     }
 
