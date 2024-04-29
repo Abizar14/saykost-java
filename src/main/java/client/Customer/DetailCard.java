@@ -11,16 +11,19 @@ import raven.swing.AvatarIcon;
 import services.boarding_houses.entities.BoardingHouseEntity;
 
 import javax.swing.*;
+import services.user.dto.UserDto;
 
 /**
  * @author Bam
  */
 public class DetailCard extends javax.swing.JPanel {
+    UserDto session;
     BoardingHouseEntity data;
     /**
      * Creates new form DetailCard
      */
-    public DetailCard(BoardingHouseEntity data) {
+    public DetailCard(BoardingHouseEntity data, UserDto session) {
+        this.session = session;
         this.data = data;
         initComponents();
         
@@ -306,7 +309,7 @@ public class DetailCard extends javax.swing.JPanel {
     private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
         // TODO add your handling code here:
         
-        Kost kos = new Kost();
+        Kost kos = new Kost(session);
         DashboardCustomer.pn_utama.removeAll();
         DashboardCustomer.pn_utama.add(kos);
         DashboardCustomer.pn_utama.repaint();
@@ -325,7 +328,7 @@ public class DetailCard extends javax.swing.JPanel {
 
     private void btnPesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesanMouseClicked
         // TODO add your handling code here:
-        PesanKost pesankost = new PesanKost(data);
+        PesanKost pesankost = new PesanKost(data,session);
         
         DashboardCustomer.pn_utama.removeAll();
         DashboardCustomer.pn_utama.add(pesankost);

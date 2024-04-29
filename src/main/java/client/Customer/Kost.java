@@ -8,17 +8,20 @@ import static client.Customer.DashboardCustomer.pn_utama;
 import java.util.ArrayList;
 import services.boarding_houses.BoardingHouseService;
 import services.boarding_houses.entities.BoardingHouseEntity;
+import services.user.dto.UserDto;
 
 /**
  *
  * @author Bam
  */
 public class Kost extends javax.swing.JPanel {
+    UserDto session;
 ArrayList<BoardingHouseEntity> listOfKos;
     /**
      * Creates new form
      */
-    public Kost() {
+    public Kost(UserDto session) {
+        this.session = session;
         initComponents();
          listOfKos = BoardingHouseService.getDataToEntity();
         icon_search.setIcon( new javax.swing.ImageIcon("./img/Search.png"));
@@ -29,7 +32,7 @@ ArrayList<BoardingHouseEntity> listOfKos;
     }
     
     private void renderCard(BoardingHouseEntity kos){
-        Card card =  new Card(kos);
+        Card card =  new Card(kos, session);
         pnKost.add(card);
         pnKost.repaint();
         pnKost.revalidate();

@@ -11,18 +11,21 @@ import javax.swing.ImageIcon;
 import org.jetbrains.annotations.ApiStatus;
 import raven.swing.AvatarIcon;
 import services.boarding_houses.entities.BoardingHouseEntity;
+import services.user.dto.UserDto;
 
 /**
  * @author Bam
  */
 public class Card extends javax.swing.JPanel {
+    UserDto session;
     BoardingHouseEntity data;
     /**
      * Creates new form Card
      */
     
     
-    public Card(BoardingHouseEntity data) {
+    public Card(BoardingHouseEntity data, UserDto session) {
+        this.session = session;
         this.data = data;
         initComponents();
         
@@ -166,7 +169,7 @@ public class Card extends javax.swing.JPanel {
 
 	private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
 		// TODO add your handling code here:
-		DetailCard detail = new DetailCard(data);
+		DetailCard detail = new DetailCard(data, session);
 
 		DashboardCustomer.pn_utama.removeAll();
 		DashboardCustomer.pn_utama.add(detail);

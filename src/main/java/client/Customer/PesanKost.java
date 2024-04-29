@@ -4,6 +4,7 @@
  */
 package client.Customer;
 
+import client.utils.Utils;
 import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.SpinnerModel;
@@ -11,18 +12,25 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import services.boarding_houses.entities.BoardingHouseEntity;
+import services.transaction.TransactionService;
+import services.transaction.entities.TransactionEntity;
+import services.user.dto.UserDto;
 
 /**
  *
  * @author Bam
  */
 public class PesanKost extends javax.swing.JPanel {
+    UserDto session;
     BoardingHouseEntity data;
+    int totalPrice;
+    int qty;
     /**
      * Creates new form 
      */
-    public PesanKost(BoardingHouseEntity data) {
-        this.data =data;
+    public PesanKost(BoardingHouseEntity data, UserDto session) {
+        this.data = data;
+        this.session = session;
         initComponents();
         
         txtHarga.setText(integerToRupiah(data.getPrice()));
@@ -35,8 +43,9 @@ public class PesanKost extends javax.swing.JPanel {
         spnSewa.addChangeListener(new ChangeListener(){
             @Override
             public void stateChanged(ChangeEvent e) {
-            int qty = (int) spnSewa.getValue();
+            qty = (int) spnSewa.getValue();
            
+            totalPrice = qty*data.getPrice();
             txtTotal.setText(integerToRupiah(qty*data.getPrice()));
             }
         });
@@ -68,7 +77,7 @@ public class PesanKost extends javax.swing.JPanel {
         txtTotal = new javax.swing.JTextField();
         spnSewa = new javax.swing.JSpinner();
         btnBatal = new javax.swing.JButton();
-        btnSimpan = new javax.swing.JButton();
+        btnBayar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(688, 501));
@@ -184,13 +193,13 @@ public class PesanKost extends javax.swing.JPanel {
             }
         });
 
-        btnSimpan.setBackground(new java.awt.Color(0, 51, 153));
-        btnSimpan.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
-        btnSimpan.setText("Bayar");
-        btnSimpan.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBayar.setBackground(new java.awt.Color(0, 51, 153));
+        btnBayar.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        btnBayar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBayar.setText("Bayar");
+        btnBayar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSimpanMouseClicked(evt);
+                btnBayarMouseClicked(evt);
             }
         });
 
@@ -200,7 +209,7 @@ public class PesanKost extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(68, 68, 68)
-                .addComponent(btnSimpan, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                .addComponent(btnBayar, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBatal, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addGap(47, 47, 47))
@@ -216,7 +225,7 @@ public class PesanKost extends javax.swing.JPanel {
                 .addContainerGap(389, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(72, 72, 72))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -228,7 +237,7 @@ public class PesanKost extends javax.swing.JPanel {
 
     private void btnBatalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseClicked
         // TODO add your handling code here:
-        DetailCard detailcard = new DetailCard(data);
+        DetailCard detailcard = new DetailCard(data, session);
         
         DashboardCustomer.pn_utama.removeAll();
         DashboardCustomer.pn_utama.add(detailcard);
@@ -236,16 +245,26 @@ public class PesanKost extends javax.swing.JPanel {
         DashboardCustomer.pn_utama.revalidate();
     }//GEN-LAST:event_btnBatalMouseClicked
 
-    private void btnSimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseClicked
+    private void btnBayarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBayarMouseClicked
         // TODO add your handling code here:
-        BoardingHouseEntity kostData = new BoardingHouseEntity();
+        try {
+        TransactionEntity transactionData = new TransactionEntity();
+        transactionData.setBoardingHouseId(data.getId());
+        transactionData.setRentalDuration(qty);
+        transactionData.setTotalPrice(totalPrice);
         
-    }//GEN-LAST:event_btnSimpanMouseClicked
+        String createdTransaction = TransactionService.create(transactionData, session.getUsername());
+            System.out.println(data.getId());
+        Utils.showMessageDialog("Sukses", "Pembayaran Sukses ", "./img/success.gif", 100, 100);
+        } catch (Exception e) {
+            Utils.showMessageDialog("Something went wrong", e.getMessage(), "./img/warning.gif", 210, 180);
+        }
+    }//GEN-LAST:event_btnBayarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
-    private javax.swing.JButton btnSimpan;
+    private javax.swing.JButton btnBayar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

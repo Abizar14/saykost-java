@@ -35,7 +35,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
                 
                 lblFullname.setText("SELAMAT DATANG  " + session.getFullName() + "  ^o^");
                 lblUser.setText(session.getUsername());
-                Kost kost = new Kost();
+                Kost kost = new Kost(session);
                 
                 pn_utama.add(kost);
                 pn_utama.repaint();
@@ -359,7 +359,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
         pnLine.setBackground(new Color(0, 51, 153));
 
         pn_utama.removeAll();
-        pn_utama.add(new Kost());
+        pn_utama.add(new Kost(session));
         pn_utama.repaint();
         pn_utama.revalidate();
     }//GEN-LAST:event_btnDashboardMouseClicked
