@@ -18,6 +18,7 @@ public class Authentication {
 		}
 	}
 
+
 	/**
 	 * Authenticates a user by validating the provided username and password.
 	 *
@@ -28,19 +29,12 @@ public class Authentication {
 	 */
 	public static UserDto loginUser(String username, String password) {
 		try {
-			UserDto user = UserService.validateUser(username, password);
-//			if (user != null) {
-//				return null;
-//			}
-			return user;
+			return UserService.validateUser(username, password);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-
 	public static void main(String[] args) {
-//		loginUser("waksunari", "waksunari");
-//		loginUser("joko", "joko");
 	}
 }
