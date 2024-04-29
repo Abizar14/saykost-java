@@ -34,6 +34,7 @@ public class UserService {
 			ResultSet result = db.createStatement().executeQuery(sql);
 			UserDto user = new UserDto();
 			while (result.next()) {
+				user.setId(result.getInt("id"));
 				user.setFullName(result.getString("full_name"));
 				user.setPhoneNumber(result.getString("phone_number"));
 				user.setUsername(result.getString("username"));

@@ -196,6 +196,7 @@ public class BoardingHouseService {
 					"FROM boarding_houses\n" +
 					"LEFT JOIN categories \n" +
 					"\tON boarding_houses.category = categories.id  \n" +
+					"WHERE boarding_houses.quantity > 0\n" +
 					"ORDER BY `boarding_houses`.`created_at` DESC;");
 
 			while (rs.next()) {
@@ -220,7 +221,6 @@ public class BoardingHouseService {
 		return data;
 	}
 
-	;
 
 	/**
 	 * This method uploads an image file to {@code ./img/upload/} folder and
