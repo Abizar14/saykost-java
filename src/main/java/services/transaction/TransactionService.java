@@ -24,13 +24,13 @@ public class TransactionService {
 	 * Creates a new transaction in the database for a given user.
 	 *
 	 * @param transactionEntity the transaction entity containing the transaction details
-	 * @param username          the username of the user
+	 * @param customerId        the id of the customer
 	 * @return a string indicating the success or failure of the transaction creation
 	 */
-	public static @NotNull String create(@NotNull TransactionEntity transactionEntity, @NotNull String username) {
+	public static @NotNull String create(@NotNull TransactionEntity transactionEntity, @NotNull int customerId) {
 		try {
 			//TODO: Add validation if username do not have transaction, set quantity in boarding house -1
-			if (!checkUsernameHaveTransaction(username)) {
+			if (!checkCustomerHaveTransactionInABoardingHouse(customerId, transactionEntity.getBoardingHouseId())) {
 				String sql = "UPDATE boarding_houses SET quantity = quantity - 1 WHERE id = '" + transactionEntity.getBoardingHouseId() + "'";
 				db.createStatement().execute(sql);
 			}
@@ -64,15 +64,21 @@ public class TransactionService {
 	}
 
 	/**
-	 * Checks if a given username has any transaction in the database.
+	 * Checks if a given username has any transaction in the database in a boarding house.
+	 * <p>
 	 *
-	 * @param username the username to check
-	 * @return true if the username has a transaction, false otherwise
+	 * @param customerId      the id of the customer to check
+	 * @param boardingHouseId the id of the boarding house to check
+	 * @return true if the customer has a transaction on the boarding house, false otherwise
 	 */
-	private static boolean checkUsernameHaveTransaction(String username) {
+	private static boolean checkCustomerHaveTransactionInABoardingHouse(int customerId, int boardingHouseId) {
 		try {
 			Statement stm = db.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT * FROM transactions WHERE customer_id = (SELECT id FROM users WHERE username = '" + username + "');");
+//			ResultSet rs = stm.executeQuery("SELECT * FROM transactions WHERE customer_id = (SELECT id FROM users WHERE username = '" + username + "');");
+//			Checks if a given username has any transaction in the database in a boarding house.
+			ResultSet rs = stm.executeQuery("SELECT * FROM transactions WHERE customer_id = '" + customerId + "' AND " +
+					"boarding_houses_id = " + boardingHouseId);
+
 			return rs.next();
 		} catch (SQLException e) {
 			System.out.println("Error: " + e.getMessage());
@@ -81,5 +87,7 @@ public class TransactionService {
 	}
 
 	public static void main(String[] args) {
+		Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+		System.out.println(create(new TransactionEntity(2, 40, createdAt, 15, 1), 1));
 	}
 }
