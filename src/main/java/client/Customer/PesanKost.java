@@ -238,6 +238,7 @@ public class PesanKost extends javax.swing.JPanel {
 
     private void btnSimpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseClicked
         // TODO add your handling code here:
+        BoardingHouseEntity kostData = new BoardingHouseEntity();
         
     }//GEN-LAST:event_btnSimpanMouseClicked
 

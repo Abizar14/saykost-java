@@ -34,6 +34,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
                 
                 
                 lblFullname.setText("SELAMAT DATANG  " + session.getFullName() + "  ^o^");
+                lblUser.setText(session.getUsername());
                 Kost kost = new Kost();
                 
                 pn_utama.add(kost);
@@ -59,7 +60,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lbl_icon = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
         pnMenu_Kost = new javax.swing.JPanel();
         pnLine = new javax.swing.JPanel();
         btnDashboard = new javax.swing.JLabel();
@@ -81,6 +82,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pn_kiri1.setBackground(new java.awt.Color(255, 255, 255));
+        pn_kiri1.setPreferredSize(new java.awt.Dimension(208, 581));
 
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
         jLabel2.setText("SayKost");
@@ -90,10 +92,10 @@ public class DashboardCustomer extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(153, 153, 153));
         jLabel6.setText("Menu");
 
-        jLabel7.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel7.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setText("User");
+        lblUser.setBackground(new java.awt.Color(204, 204, 204));
+        lblUser.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
+        lblUser.setForeground(new java.awt.Color(153, 153, 153));
+        lblUser.setText("User");
 
         pnMenu_Kost.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -133,7 +135,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
                 .addComponent(iconkost)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDashboard)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -163,7 +165,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
         );
 
         btnTransaksi.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-        btnTransaksi.setText("Transaksi");
+        btnTransaksi.setText("History Transaksi");
         btnTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTransaksiMouseClicked(evt);
@@ -185,7 +187,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
                 .addComponent(icontransaksi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTransaksi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGap(82, 82, 82)
                 .addComponent(pnLineTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -258,7 +260,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
             .addGroup(pn_kiri1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(pn_kiri1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
+                    .addComponent(lblUser)
                     .addGroup(pn_kiri1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel6)
                         .addGroup(pn_kiri1Layout.createSequentialGroup()
@@ -266,9 +268,9 @@ public class DashboardCustomer extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel2))
                         .addComponent(pnMenu_Kost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnMenu_Transaksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(pnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnMenu_Transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addGap(28, 28, 28))
         );
         pn_kiri1Layout.setVerticalGroup(
             pn_kiri1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,7 +289,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(pnMenu_Transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7)
+                .addComponent(lblUser)
                 .addGap(18, 18, 18)
                 .addComponent(pnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -310,7 +312,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(79, Short.MAX_VALUE)
                 .addComponent(lblFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -333,7 +335,7 @@ public class DashboardCustomer extends javax.swing.JFrame {
             pn_dasarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_dasarLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(pn_utama, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+                .addComponent(pn_utama, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pn_dasarLayout.setVerticalGroup(
@@ -436,9 +438,9 @@ public class DashboardCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel icontransaksi;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFullname;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lbl_icon;
     private javax.swing.JPanel pnLine;
     private javax.swing.JPanel pnLineTransaksi;
