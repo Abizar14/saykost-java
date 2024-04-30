@@ -4,7 +4,6 @@
  */
 package client.Customer;
 
-import static client.Customer.DashboardCustomer.pn_utama;
 import java.util.ArrayList;
 import services.boarding_houses.BoardingHouseService;
 import services.boarding_houses.entities.BoardingHouseEntity;
@@ -15,24 +14,26 @@ import services.user.dto.UserDto;
  * @author Bam
  */
 public class Kost extends javax.swing.JPanel {
+
     UserDto session;
-ArrayList<BoardingHouseEntity> listOfKos;
+    ArrayList<BoardingHouseEntity> listOfKos;
+
     /**
      * Creates new form
      */
     public Kost(UserDto session) {
         this.session = session;
         initComponents();
-         listOfKos = BoardingHouseService.getDataToEntity();
-        icon_search.setIcon( new javax.swing.ImageIcon("./img/Search.png"));
+        listOfKos = BoardingHouseService.getDataToEntity();
+        icon_search.setIcon(new javax.swing.ImageIcon("./img/Search.png"));
         for (BoardingHouseEntity kos : listOfKos) {
-                    renderCard(kos);
-            }
-       
+            renderCard(kos);
+        }
+
     }
-    
-    private void renderCard(BoardingHouseEntity kos){
-        Card card =  new Card(kos, session);
+
+    private void renderCard(BoardingHouseEntity kos) {
+        Card card = new Card(kos, session);
         pnKost.add(card);
         pnKost.repaint();
         pnKost.revalidate();
@@ -162,14 +163,13 @@ ArrayList<BoardingHouseEntity> listOfKos;
 
     private void txtfld_serachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfld_serachActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_txtfld_serachActionPerformed
 
     private void btn_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_searchMouseClicked
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btn_searchMouseClicked
 
+    }//GEN-LAST:event_btn_searchMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btn_search;
