@@ -45,28 +45,28 @@ public class TransactionService {
 //			System.out.println("Error " + e.getMessage());
 //			return "Error " + e.getMessage();
 //		}
-try {
-        if (!checkCustomerHaveTransactionInABoardingHouse(customerId, transactionEntity.getBoardingHouseId())) {
-            String sql = "UPDATE boarding_houses SET quantity = quantity - 1 WHERE id = ?";
-            PreparedStatement pstmt = db.prepareStatement(sql);
-            pstmt.setInt(1, transactionEntity.getBoardingHouseId());
-            pstmt.executeUpdate();
-        }
-        Timestamp createdAt = new Timestamp(System.currentTimeMillis());
-        String sql = "INSERT INTO transactions (rental_duration, total_price, created_at, boarding_houses_id, customer_id) " +
-                "VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement pstmt = db.prepareStatement(sql);
-        pstmt.setInt(1, transactionEntity.getRentalDuration());
-        pstmt.setInt(2, transactionEntity.getTotalPrice());
-        pstmt.setTimestamp(3, createdAt);
-        pstmt.setInt(4, transactionEntity.getBoardingHouseId());
-        pstmt.setInt(5, transactionEntity.getCustomerId());
-        pstmt.executeUpdate();
-        return "Transaction created successfully";
-    } catch (SQLException e) {
-        System.out.println("Error " + e.getMessage());
-        return "Error " + e.getMessage();
-    }
+		try {
+			if (!checkCustomerHaveTransactionInABoardingHouse(customerId, transactionEntity.getBoardingHouseId())) {
+				String sql = "UPDATE boarding_houses SET quantity = quantity - 1 WHERE id = ?";
+				PreparedStatement pstmt = db.prepareStatement(sql);
+				pstmt.setInt(1, transactionEntity.getBoardingHouseId());
+				pstmt.executeUpdate();
+			}
+			Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+			String sql = "INSERT INTO transactions (rental_duration, total_price, created_at, boarding_houses_id, customer_id) " +
+					"VALUES (?, ?, ?, ?, ?)";
+			PreparedStatement pstmt = db.prepareStatement(sql);
+			pstmt.setInt(1, transactionEntity.getRentalDuration());
+			pstmt.setInt(2, transactionEntity.getTotalPrice());
+			pstmt.setTimestamp(3, createdAt);
+			pstmt.setInt(4, transactionEntity.getBoardingHouseId());
+			pstmt.setInt(5, transactionEntity.getCustomerId());
+			pstmt.executeUpdate();
+			return "Transaction created successfully";
+		} catch (SQLException e) {
+			System.out.println("Error " + e.getMessage());
+			return "Error " + e.getMessage();
+		}
 	}
 
 	/**
@@ -110,8 +110,40 @@ try {
 		}
 	}
 
+	public static int countTransaction() {
+		try {
+			String sql = "SELECT COUNT(*) AS jumlah FROM transactions";
+			PreparedStatement ps = db.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			int jumlahData = 0;
+			if (rs.next()) {
+				jumlahData = rs.getInt("jumlah");
+			}
+
+			return jumlahData;
+		} catch (SQLException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+		return 0;
+	}
+
+	public static @Nullable TableModel getAllTransactionsTableModel() {
+		try {
+			Statement stm = db.createStatement();
+			ResultSet rs = stm.executeQuery("SELECT boarding_houses.name AS boarding_house, boarding_houses.price, transactions" +
+					".rental_duration, transactions.total_price, transactions.created_at FROM transactions JOIN boarding_houses ON transactions.boarding_houses_id = boarding_houses.id JOIN users ON transactions.customer_id = users.id;");
+			return DbUtils.resultSetToTableModel(rs);
+		} catch (SQLException e) {
+			System.out.println("Error: " + e.getMessage());
+			return null;
+		}
+	}
+
 	public static void main(String[] args) {
 		Timestamp createdAt = new Timestamp(System.currentTimeMillis());
-		System.out.println(create(new TransactionEntity(2, 40, createdAt, 21, 8), 8));
+//		System.out.println(create(new TransactionEntity(2, 40, createdAt, 21, 8), 8));
+		System.out.println(countTransaction());
 	}
+
 }
