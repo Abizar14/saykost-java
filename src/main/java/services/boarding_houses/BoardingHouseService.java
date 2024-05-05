@@ -5,17 +5,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import services.boarding_houses.entities.BoardingHouseEntity;
 import services.database.Db;
+import services.storage.StorageService;
 
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class BoardingHouseService {
 
@@ -42,7 +38,8 @@ public class BoardingHouseService {
 			if (boardingHouseEntity.getImage().isBlank() || boardingHouseEntity.getImage() == null) {
 				return "Gambar tidak boleh kosong masszee";
 			}
-			String imageUploaded = uploadImage(new File(boardingHouseEntity.getImage()), boardingHouseEntity.getName());
+			String imageUploaded = StorageService.uploadImage(new File(boardingHouseEntity.getImage()),
+					boardingHouseEntity.getName());
 			String sql = "INSERT INTO boarding_houses (name, image, size, price, address, description, quantity, category, created_at) VALUES ('" + boardingHouseEntity.getName() + "', '" + imageUploaded + "', '" + boardingHouseEntity.getSize() + "', '"
 					+ boardingHouseEntity.getPrice() + "', '" + boardingHouseEntity.getAddress() + "', '" + boardingHouseEntity.getDescription() + "', '" + boardingHouseEntity.getQuantity() + "', '" + boardingHouseEntity.getCategory() + "', '" + createdAt + "');";
 			db.createStatement().execute(sql);
@@ -53,20 +50,22 @@ public class BoardingHouseService {
 		}
 	}
 
-	public static @NotNull String update(@NotNull BoardingHouseEntity boardingHouseEntity) {
+	public static @NotNull String update(@NotNull BoardingHouseEntity boardingHouseEntity, String oldImage) {
 		try {
-
 			Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
 
 			if (boardingHouseEntity.getImage().isBlank() || boardingHouseEntity.getImage() == null) {
 				return "Gambar tidak boleh kosong masszee";
 			}
-			String imageUploaded = uploadImage(new File(boardingHouseEntity.getImage()), boardingHouseEntity.getName());
+//			String imageUploaded = Storage.uploadImage(new File(boardingHouseEntity.getImage()),
+//					boardingHouseEntity.getName());
+			String updatedImage = StorageService.updateImage(new File(boardingHouseEntity.getImage()), oldImage,
+					boardingHouseEntity.getName());
 			String sql = "UPDATE boarding_houses SET name = ?, image = ?, size = ?, price = ?, address = ?, description = ?, quantity = ?, created_at = ?, category = ? WHERE id = ?";
 
 			PreparedStatement pstmt = db.prepareStatement(sql);
 			pstmt.setString(1, boardingHouseEntity.getName());
-			pstmt.setString(2, imageUploaded);
+			pstmt.setString(2, updatedImage);
 			pstmt.setString(3, boardingHouseEntity.getSize());
 			pstmt.setInt(4, boardingHouseEntity.getPrice());
 			pstmt.setString(5, boardingHouseEntity.getAddress());
@@ -92,6 +91,7 @@ public class BoardingHouseService {
 
 	public static @NotNull String deleteById(@NotNull BoardingHouseEntity boardingHouseEntity) {
 		try {
+			StorageService.deleteImage(boardingHouseEntity.getImage());
 			String sql = "DELETE FROM boarding_houses WHERE id = ?";
 			PreparedStatement pstmt = db.prepareStatement(sql);
 			pstmt.setInt(1, boardingHouseEntity.getId());
@@ -181,7 +181,7 @@ public class BoardingHouseService {
 		try {
 			java.sql.Statement stm = db.createStatement();
 			java.sql.ResultSet rs = stm.executeQuery("""
-					SELECT boarding_houses.id, boarding_houses.name as 'Nama Kos', boarding_houses.image as Gambar, boarding_houses.size as Ukuran, boarding_houses.price as Harga, boarding_houses.address as Alamat, boarding_houses.description as Deskripsi, boarding_houses.quantity as 'Jumlah Kamar', categories.name as Kategori, created_at
+					SELECT boarding_houses.name as 'Nama Kos', boarding_houses.size as Ukuran, boarding_houses.price as Harga, boarding_houses.address as Alamat, boarding_houses.description as Deskripsi, boarding_houses.quantity as 'Jumlah Kamar', categories.name as Kategori, created_at as 'Waktu Dibuat'
 					FROM boarding_houses
 					LEFT JOIN categories
 					\tON boarding_houses.category = categories.id
@@ -233,33 +233,7 @@ public class BoardingHouseService {
 		return data;
 	}
 
+	public static void main(String[] args) {
 
-	/**
-	 * This method uploads an image file to {@code ./img/upload/} folder and
-	 * returns the path of the uploaded image.
-	 *
-	 * @param imageFile         The file to be uploaded.
-	 * @param boardingHouseName The name of the boarding house.
-	 * @return The path of the uploaded image, or null if an error occurs.
-	 */
-	public static @Nullable
-	String uploadImage(File imageFile, String boardingHouseName) {
-		File destinationFolder = new File("./img/upload");
-
-		if (!destinationFolder.exists()) {
-			destinationFolder.mkdir();
-		}
-
-		String uniqueFileName = boardingHouseName + "-" + new Date().getTime() + "-" + imageFile.getName();
-		Path destinationFilePath = destinationFolder.toPath().resolve(uniqueFileName);
-
-		try {
-			Files.copy(imageFile.toPath(), destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
-			System.out.println(destinationFilePath);
-			return "./img/upload/" + uniqueFileName;
-		} catch (IOException e) {
-			System.out.println("Error" + e.getMessage());
-			return null;
-		}
 	}
 }

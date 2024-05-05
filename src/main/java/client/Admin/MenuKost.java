@@ -5,6 +5,7 @@
 package client.Admin;
 
 import client.utils.Utils;
+import raven.swing.AvatarIcon;
 import services.boarding_houses.BoardingHouseService;
 import services.boarding_houses.entities.BoardingHouseEntity;
 
@@ -13,10 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.io.File;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 /**
  * @author ACER
@@ -29,85 +27,16 @@ public class MenuKost extends javax.swing.JPanel {
 	public boolean databaru;
 	//	file image to be uploaded
 	File imageFile;
-//    String prevImage;
+
+	String image = new BoardingHouseEntity().getImage();
 
 	public MenuKost() {
 		initComponents();
 		databaru = true;
+		jTextField1.setEnabled(false); // disable textfield image
+		txtId.setEnabled(false); // disable textfield id
 		tblKost.setModel(BoardingHouseService.getData());
 		tblKostAwal.setModel(BoardingHouseService.getDataKost());
-	}
-
-	// method addData
-	private void addData() {
-		// Mendapatkan nilai dari inputan
-		String name = txtNamaKost.getText();
-		String image = jTextField1.getText();
-		String address = txtAlamat.getText();
-		String size = txtUkuran.getText();
-
-		int price = Integer.parseInt(txtHarga.getText());
-
-		String description = txtDeskripsi.getText();
-		int quantity = (int) spinnerQuantity.getValue();
-//        int category = Integer.parseInt(txtCategory.getText());
-		// Mendapatkan ID kategori berdasarkan nama kategori dari tabel kategori
-//        int categoryId = -1; // Default value
-//        try (Connection conn = services.database.Db.getConnection(); PreparedStatement ps = conn.prepareStatement("SELECT id FROM categories WHERE name = ?")) {
-//            ps.setInt(1, category);
-//            try (ResultSet rs = ps.executeQuery()) {
-//                if (rs.next()) {
-//                    categoryId = rs.getInt("id");
-//                }
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//            // Tangani kesalahan jika terjadi saat mendapatkan ID kategori
-//        }
-//
-//        // memeriksa apakah gambar sudah diupload
-//        if (jTextField1.getText().equals("")) {
-//            JOptionPane.showMessageDialog(null, "Anda belum mengupload Gambar");
-//        } else if (categoryId == -1) {
-//            JOptionPane.showMessageDialog(null, "Kategori tidak ditemukan"); // Tampilkan pesan jika kategori tidak ditemukan
-//        }
-
-		// menyimpan data ke database
-		try {
-			Timestamp createdAt = new Timestamp(System.currentTimeMillis());
-//            String sql = "insert into boarding_houses values('" + name + "','" + image + "','" + size + "','" + price + "','" + address + "','" + description + "','" + createdAt + "')";
-			String sql = "INSERT INTO boarding_houses (name, image, size, price, address, description, quantity, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-			Connection conn = services.database.Db.getConnection();
-			PreparedStatement ps = conn.prepareStatement(sql);
-			// Mendapatkan waktu saat ini
-			ps.setString(1, name);
-			ps.setString(2, image);
-			ps.setString(3, size);
-			ps.setInt(4, price);
-			ps.setString(5, address);
-			ps.setString(6, description);
-			ps.setInt(7, quantity);
-			ps.setTimestamp(8, createdAt);
-//            ps.setInt(9, categoryId);
-			ps.execute();
-			JOptionPane.showMessageDialog(null, "berhasil disimpan");
-
-//            // eksekusi query
-//            int rowsAffected = ps.executeUpdate();
-//
-//            if (rowsAffected > 0) {
-//                JOptionPane.showMessageDialog(null, "Data berhasil disimpan ke database.");
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Gagal menyimpan data.");
-//            }
-//
-//            // tutup koneksi dan statement
-//            ps.close();
-//            conn.close();
-		} catch (SQLException e) {
-//            JOptionPane.showMessageDialog(null, "eRROR SAAT MENYIMPAN DATA");
-			System.out.println("Error" + e.getMessage());
-		}
 	}
 
 	/**
@@ -557,13 +486,12 @@ public class MenuKost extends javax.swing.JPanel {
 				// Create an ImageIcon from the selected file
 				ImageIcon ic = new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath());
 				// Set the ImageIcon as the icon of the label
-				labelImage.setIcon(ic);
+				labelImage.setIcon(new AvatarIcon(ic, 100, 100, 5));
 				// Set the name of the selected file in the text field
 				jTextField1.setText(fileChooser.getSelectedFile().getName());
-				// Disable the text field to prevent editing
-				jTextField1.setEnabled(false);
 			} else {
 				// If no file was selected
+				imageFile = fileChooser.getSelectedFile();
 				jTextField1.setText("Batal memilih gambar");
 			}
 
@@ -595,16 +523,12 @@ public class MenuKost extends javax.swing.JPanel {
 				kostData.setAddress(txtAlamat.getText());
 				kostData.setDescription(txtDeskripsi.getText());
 				kostData.setQuantity((int) spinnerQuantity.getValue());
-
-				// buat field kategori! (it's hardcoded to "1" for now)
 				kostData.setCategory(String.valueOf(cmbCategory.getSelectedIndex() + 1));
 
 				// Save to database
 				String createdKost = BoardingHouseService.create(kostData);
 				if (createdKost != null) {
 					Utils.showMessageDialog("Sukses", createdKost, "./img/success.gif", 100, 100);
-
-					//
 				} else {
 					JOptionPane.showMessageDialog(null, "Gagal menyimpan data kost");
 				}
@@ -614,10 +538,10 @@ public class MenuKost extends javax.swing.JPanel {
 		} else {
 			try {
 				BoardingHouseEntity kostData = new BoardingHouseEntity();
-
+//				image = kostData.getImage();
 				kostData.setId(Integer.parseInt(txtId.getText()));
 				kostData.setName(txtNamaKost.getText());
-				kostData.setImage(jTextField1.getText());
+//				kostData.setImage(jTextField1.getText());
 
 //                String prevImage = jTextField1.getText();
 				kostData.setSize(txtUkuran.getText());
@@ -633,14 +557,17 @@ public class MenuKost extends javax.swing.JPanel {
 				kostData.setAddress(txtAlamat.getText());
 				kostData.setDescription(txtDeskripsi.getText());
 				kostData.setQuantity((int) spinnerQuantity.getValue());
-
+				kostData.setImage(String.valueOf(imageFile));
+				System.out.println("image baru: " + imageFile);
 				// buat field kategori! (it's hardcoded to "1" for now)
 				kostData.setCategory(String.valueOf(cmbCategory.getSelectedIndex() + 1));
 
 				// Save to database
-				String updatedKost = BoardingHouseService.update(kostData);
+				String updatedKost = BoardingHouseService.update(kostData, image);
+				System.out.println("image awal: " + image);
 				if (updatedKost != null) {
 					Utils.showMessageDialog("Sukses", updatedKost, "./img/success.gif", 100, 100);
+
 				} else {
 					JOptionPane.showMessageDialog(null, "Gagal mengupdate data kost");
 				}
@@ -688,7 +615,8 @@ public class MenuKost extends javax.swing.JPanel {
 				txtDeskripsi.setText(description);
 				int quantity = sql.getInt("quantity");
 				spinnerQuantity.setValue(quantity);
-				String image = sql.getString("image");
+				this.image = sql.getString("image");
+				labelImage.setIcon(new AvatarIcon(image, 100, 100, 5));
 				jTextField1.setText(image);
 
 				databaru = false;
@@ -700,9 +628,16 @@ public class MenuKost extends javax.swing.JPanel {
 
 	private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
 		// TODO add your handling code here:
+		int isConfirmed = Utils.showConfirmDialog("Warning", "Are you sure want to delete?", "./img/warning.gif", 100,
+				100);
+		if (isConfirmed == JOptionPane.NO_OPTION) {
+			return;
+		}
+
 		try {
 			BoardingHouseEntity kostData = new BoardingHouseEntity();
 			kostData.setId(Integer.parseInt(txtId.getText()));
+			kostData.setImage(jTextField1.getText());
 			String deleteData = BoardingHouseService.deleteById(kostData);
 
 //			databaru = true;
