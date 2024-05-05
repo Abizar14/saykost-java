@@ -140,6 +140,25 @@ public class TransactionService {
 		}
 	}
 
+	/**
+	 * Retrieves transaction data by boarding house name with a TableModel.
+	 *
+	 * @param boardingHouseName The name of the boarding house to retrieve transaction data for.
+	 * @return The TableModel containing the transaction data, or null if an error occurs.
+	 */
+	public static @Nullable TableModel getTransactionsByBoardingHouseNameTableModel(String boardingHouseName) {
+		try {
+			Statement stm = db.createStatement();
+			ResultSet rs = stm.executeQuery("SELECT boarding_houses.name AS boarding_house, boarding_houses.price, transactions" +
+					".rental_duration, transactions.total_price, transactions.created_at FROM transactions JOIN boarding_houses ON transactions.boarding_houses_id = boarding_houses.id JOIN users ON transactions.customer_id = users.id WHERE boarding_houses.name LIKE '%" + boardingHouseName + "%';");
+			return DbUtils.resultSetToTableModel(rs);
+		} catch (SQLException e) {
+			System.out.println("Error: " + e.getMessage());
+			return null;
+		}
+
+	}
+
 	public static void main(String[] args) {
 		Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 //		System.out.println(create(new TransactionEntity(2, 40, createdAt, 21, 8), 8));

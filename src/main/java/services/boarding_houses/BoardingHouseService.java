@@ -194,7 +194,7 @@ public class BoardingHouseService {
 		}
 	}
 
-	public static ArrayList<BoardingHouseEntity> getDataToEntity() {
+	public static @Nullable ArrayList<BoardingHouseEntity> getDataToEntity() {
 		ArrayList<BoardingHouseEntity> data = new ArrayList<>();
 		try {
 			Statement stm = db.createStatement();
@@ -229,11 +229,82 @@ public class BoardingHouseService {
 			}
 		} catch (Exception e) {
 			System.out.println("Error Saat Mengambil Data pada Bourding House Entity" + e.getMessage());
+			return null;
 		}
 		return data;
 	}
 
-	public static void main(String[] args) {
+	/**
+	 * Retrieves data from the database based on the provided name.
+	 *
+	 * @param name the name to search for in the database
+	 * @return the TableModel object containing the retrieved data, or null if an error occurs
+	 */
+	public static @Nullable TableModel getDataByNameToTable(String name) {
+		try {
+			java.sql.Statement stm = db.createStatement();
+			java.sql.ResultSet rs = stm.executeQuery("SELECT boarding_houses.id, boarding_houses.name, " +
+					"boarding_houses.image, boarding_houses.size, boarding_houses.price," +
+					" boarding_houses" +
+					".address, " +
+					"boarding_houses.description, boarding_houses.quantity, categories" +
+					".name as category, " +
+					"created_at\n" +
+					"FROM boarding_houses\n" +
+					"LEFT JOIN categories \n" +
+					"\tON boarding_houses.category = categories.id  \n" +
+					"WHERE boarding_houses.name LIKE '%" + name + "%' AND boarding_houses.quantity > 0\n" +
+					"ORDER BY `boarding_houses`.`created_at` DESC;");
 
+			return DbUtils.resultSetToTableModel(rs);
+		} catch (SQLException | HeadlessException e) {
+			System.out.println("Error" + e.getMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Retrieves data from the database based on the provided name.
+	 *
+	 * @param name the name to search for in the database
+	 * @return an ArrayList of BoardingHouseEntity objects containing the retrieved data, or null if an error occurs
+	 */
+	public static @Nullable ArrayList<BoardingHouseEntity> getDataByNameEntity(String name) {
+		ArrayList<BoardingHouseEntity> data = new ArrayList<>();
+		try {
+			Statement stm = db.createStatement();
+			ResultSet rs = stm.executeQuery("SELECT boarding_houses.id, boarding_houses.name, " +
+					"boarding_houses.image, boarding_houses.size, boarding_houses.price," +
+					" boarding_houses" +
+					".address, " +
+					"boarding_houses.description, boarding_houses.quantity, categories" +
+					".name as category, " +
+					"created_at\n" +
+					"FROM boarding_houses\n" +
+					"LEFT JOIN categories \n" +
+					"\tON boarding_houses.category = categories.id  \n" +
+					"WHERE boarding_houses.name LIKE '%" + name + "%' AND boarding_houses.quantity > 0\n" +
+					"ORDER BY `boarding_houses`.`created_at` DESC;");
+
+			while (rs.next()) {
+				BoardingHouseEntity kos = new BoardingHouseEntity();
+				kos.setId(rs.getInt("id"));
+				kos.setName(rs.getString("name"));
+				kos.setAddress(rs.getString("address"));
+				kos.setCategory(rs.getString("category"));
+				kos.setCreatedAt(rs.getString("created_at"));
+				kos.setDescription(rs.getString("description"));
+				kos.setImage(rs.getString("image"));
+				kos.setPrice(rs.getInt("price"));
+				kos.setQuantity(rs.getInt("quantity"));
+				kos.setSize(rs.getString("size"));
+				System.out.println("Kos ID" + kos.getId());
+				data.add(kos);
+			}
+		} catch (Exception e) {
+			System.out.println("Error Saat Mengambil Data pada Bourding House Entity" + e.getMessage());
+			return null;
+		}
+		return data;
 	}
 }
