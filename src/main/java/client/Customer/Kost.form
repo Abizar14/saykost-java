@@ -28,7 +28,7 @@
               <Component id="jPanel1" max="32767" attributes="0"/>
               <EmptySpace min="146" pref="146" max="-2" attributes="0"/>
           </Group>
-          <Component id="jPanel2" alignment="0" pref="688" max="32767" attributes="0"/>
+          <Component id="jPanel2" alignment="0" pref="821" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -36,7 +36,7 @@
           <Group type="102" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Component id="jPanel2" pref="415" max="32767" attributes="0"/>
+              <Component id="jPanel2" pref="421" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -83,13 +83,16 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="97" green="97" red="97" type="rgb"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Search"/>
             <Property name="toolTipText" type="java.lang.String" value="nama Kos"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Text Cursor"/>
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtfld_serachMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfld_serachActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtfld_serachKeyReleased"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="btn_search">

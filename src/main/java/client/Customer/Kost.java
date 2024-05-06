@@ -5,6 +5,7 @@
 package client.Customer;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import services.boarding_houses.BoardingHouseService;
 import services.boarding_houses.entities.BoardingHouseEntity;
 import services.user.dto.UserDto;
@@ -63,11 +64,22 @@ public class Kost extends javax.swing.JPanel {
 
         txtfld_serach.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         txtfld_serach.setForeground(new java.awt.Color(151, 151, 151));
+        txtfld_serach.setText("Search");
         txtfld_serach.setToolTipText("nama Kos");
         txtfld_serach.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtfld_serach.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtfld_serachMouseClicked(evt);
+            }
+        });
         txtfld_serach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtfld_serachActionPerformed(evt);
+            }
+        });
+        txtfld_serach.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtfld_serachKeyReleased(evt);
             }
         });
 
@@ -150,14 +162,14 @@ public class Kost extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(146, 146, 146))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -169,7 +181,64 @@ public class Kost extends javax.swing.JPanel {
     private void btn_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_searchMouseClicked
         // TODO add your handling code here:
 
+       if(txtfld_serach.getText().isEmpty()){
+         pnKost.removeAll();
+        
+        
+           for (BoardingHouseEntity kos : listOfKos) {
+            renderCard(kos);
+        }
+       
+       }{
+     ArrayList<BoardingHouseEntity> payload = BoardingHouseService.getDataByNameEntity(txtfld_serach.getText());
+        pnKost.removeAll();
+        
+        
+           for (BoardingHouseEntity kos : payload) {
+            renderCard(kos);
+        }
+    
+    }
+
     }//GEN-LAST:event_btn_searchMouseClicked
+
+    private void txtfld_serachKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfld_serachKeyReleased
+        // TODO add your handling code here:
+        
+        
+            if(txtfld_serach.getText().isEmpty()){
+         pnKost.removeAll();
+        
+        
+           for (BoardingHouseEntity kos : listOfKos) {
+            renderCard(kos);
+        }
+       
+       }{
+     ArrayList<BoardingHouseEntity> payload = BoardingHouseService.getDataByNameEntity(txtfld_serach.getText());
+        pnKost.removeAll();
+        
+   
+           for (BoardingHouseEntity kos : payload) {
+            renderCard(kos);
+        }
+    
+    }
+        
+        
+//             String username = txtSearchCustomer.getText();
+//
+//        if (username != ("")) {
+//            tblCustomer.setModel(UserService.getDataCustomerByUsername(username));
+//        } else {
+//            tblCustomer.setModel(UserService.getDataUser());
+//        }
+    }//GEN-LAST:event_txtfld_serachKeyReleased
+
+    private void txtfld_serachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtfld_serachMouseClicked
+        // TODO add your handling code here:
+        txtfld_serach.setText("");
+    }//GEN-LAST:event_txtfld_serachMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btn_search;
