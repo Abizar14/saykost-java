@@ -3,6 +3,8 @@ package client.utils;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Utils {
 
@@ -61,5 +63,11 @@ public class Utils {
 		panel.add(labelMessage, BorderLayout.SOUTH);
 		// Show the panel in a JOptionPane
 		return JOptionPane.showConfirmDialog(null, panel, title, JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+	}
+
+	public static String formatRupiah(double numberToFormatted) {
+		Locale myIndonesianLocale = new Locale("in", "ID");
+		NumberFormat formatter = NumberFormat.getCurrencyInstance(myIndonesianLocale);
+		return formatter.format(numberToFormatted);
 	}
 }

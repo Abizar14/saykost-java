@@ -1,13 +1,16 @@
 package services.transaction;
 
+import client.utils.Utils;
 import net.proteanit.sql.DbUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import services.database.Db;
 import services.transaction.entities.TransactionEntity;
 
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class TransactionService {
 
@@ -84,9 +87,45 @@ public class TransactionService {
 	TableModel getTransactionsByUsernameTableModel(String username) {
 		try {
 			Statement stm = db.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT boarding_houses.name AS boarding_house, boarding_houses.price, transactions"
-					+ ".rental_duration, transactions.total_price, transactions.created_at FROM transactions JOIN boarding_houses ON transactions.boarding_houses_id = boarding_houses.id JOIN users ON transactions.customer_id = users.id WHERE users.username = '" + username + "';");
-			return DbUtils.resultSetToTableModel(rs);
+			ResultSet rs = stm.executeQuery("SELECT boarding_houses.name AS 'Nama Kost', boarding_houses.price AS " +
+					"'Harga Per Bulan', " +
+					"transactions"
+					+ ".rental_duration AS 'Lama Sewa', transactions.total_price AS 'Total Harga', transactions" +
+					".created_at AS 'Tanggal Transaksi' FROM " +
+					"transactions JOIN" +
+					" " +
+					"boarding_houses ON transactions.boarding_houses_id = boarding_houses.id JOIN users ON transactions.customer_id = users.id WHERE users.username = '" + username + "';");
+
+
+			ArrayList<Object[]> rows = new ArrayList<>();
+
+
+			while (rs.next()) {
+				int hargaPerBulan = rs.getInt("Harga Per Bulan");
+				String hargaPerBulanFormatted = Utils.formatRupiah(hargaPerBulan);
+
+				int totalHarga = rs.getInt("Total Harga");
+				String totalHargaFormatted = Utils.formatRupiah(totalHarga);
+
+//				Add the formatted row to the ArrayList
+				rows.add(new Object[]{
+						rs.getString("Nama Kost"),
+						hargaPerBulanFormatted,
+						rs.getInt("Lama Sewa"),
+						totalHargaFormatted,
+						rs.getString("Tanggal Transaksi")
+				});
+			}
+
+			String[] columnNames = {"Nama Kost", "Harga Per Bulan", "Lama Sewa", "Total Harga", "Tanggal Transaksi"};
+			DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+//			Add the formatted rows to the TableModel
+			for (Object[] row : rows) {
+				model.addRow(row);
+			}
+
+			return model;
 		} catch (SQLException e) {
 			System.out.println("Error: " + e.getMessage());
 			return null;
@@ -136,39 +175,115 @@ public class TransactionService {
 		return 0;
 	}
 
+	/**
+	 * Retrieves all transactions data and formats it into a TableModel for display.
+	 *
+	 * @return the TableModel containing the formatted transaction data, or null if an error occurs
+	 */
 	public static @Nullable
 	TableModel getAllTransactionsTableModel() {
 		try {
 			Statement stm = db.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT boarding_houses.name AS boarding_house, boarding_houses.price, transactions"
-					+ ".rental_duration, transactions.total_price, transactions.created_at FROM transactions JOIN boarding_houses ON transactions.boarding_houses_id = boarding_houses.id JOIN users ON transactions.customer_id = users.id;");
-			return DbUtils.resultSetToTableModel(rs);
+			ResultSet rs = stm.executeQuery("SELECT boarding_houses.name AS 'Nama Kost', boarding_houses.price AS 'Harga Per Bulan', " +
+					"transactions"
+					+ ".rental_duration AS 'Lama Sewa', transactions.total_price AS 'Total Harga', transactions" +
+					".created_at AS 'Tanggal Transaksi' FROM " +
+					"transactions JOIN" +
+					" boarding_houses ON transactions.boarding_houses_id = boarding_houses.id JOIN users ON transactions.customer_id = users.id;");
+
+			ArrayList<Object[]> rows = new ArrayList<>();
+
+			while (rs.next()) {
+				int hargaPerBulan = rs.getInt("Harga Per Bulan");
+				String hargaPerBulanFormatted = Utils.formatRupiah(hargaPerBulan);
+
+				int totalHarga = rs.getInt("Total Harga");
+
+				String totalHargaFormatted = Utils.formatRupiah(totalHarga);
+
+				// Add the formatted row to the ArrayList
+				rows.add(new Object[]{
+						rs.getString("Nama Kost"),
+						hargaPerBulanFormatted,
+						rs.getInt("Lama Sewa"),
+						totalHargaFormatted,
+						rs.getString("Tanggal Transaksi")
+				});
+			}
+
+			String[] columnNames = {"Nama Kost", "Harga Per Bulan", "Lama Sewa", "Total Harga", "Tanggal Transaksi"};
+			DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+			// Add the formatted rows to the TableModel
+			for (Object[] row : rows) {
+				model.addRow(row);
+			}
+
+			return model;
 		} catch (SQLException e) {
 			System.out.println("Error: " + e.getMessage());
 			return null;
 		}
 	}
 
+
 	/**
-	 * Retrieves transaction data by boarding house name with a TableModel.
+	 * Retrieves transaction data for a specific boarding house by name with a TableModel.
 	 *
-	 * @param boardingHouseName The name of the boarding house to retrieve
-	 *                          transaction data for.
-	 * @return The TableModel containing the transaction data, or null if an
-	 * error occurs.
+	 * @param boardingHouseName The name of the boarding house to retrieve transaction data for.
+	 * @return The TableModel containing the transaction data, or null if an error occurs.
 	 */
 	public static @Nullable
 	TableModel getTransactionsByBoardingHouseNameTableModel(String boardingHouseName) {
 		try {
+			// Create a database statement
 			Statement stm = db.createStatement();
-			ResultSet rs = stm.executeQuery("SELECT boarding_houses.name AS boarding_house, boarding_houses.price, transactions"
-					+ ".rental_duration, transactions.total_price, transactions.created_at FROM transactions JOIN boarding_houses ON transactions.boarding_houses_id = boarding_houses.id JOIN users ON transactions.customer_id = users.id WHERE boarding_houses.name LIKE '%" + boardingHouseName + "%';");
-			return DbUtils.resultSetToTableModel(rs);
+
+			// Execute a SQL query to retrieve transaction data for the specified boarding house name
+			ResultSet rs = stm.executeQuery("SELECT boarding_houses.name AS 'Nama Kost', boarding_houses.price AS 'Harga Per Bulan', " +
+					"transactions"
+					+ ".rental_duration AS 'Lama Sewa', transactions.total_price AS 'Total Harga', transactions" +
+					".created_at AS 'Tanggal Transaksi' FROM " +
+					"transactions JOIN" +
+					" boarding_houses ON transactions.boarding_houses_id = boarding_houses.id JOIN users ON " +
+					"transactions.customer_id = users.id WHERE boarding_houses.name LIKE '%" + boardingHouseName + "%';");
+
+			ArrayList<Object[]> rows = new ArrayList<>();
+
+			while (rs.next()) {
+				int hargaPerBulan = rs.getInt("Harga Per Bulan");
+				// Format the value of Harga Per Bulan into Indonesian currency format (Rupiah)
+				String hargaPerBulanFormatted = Utils.formatRupiah(hargaPerBulan);
+
+				// Get the value of Total Harga from the result set
+				int totalHarga = rs.getInt("Total Harga");
+				// Format the value of Total Harga into Indonesian currency format (Rupiah)
+				String totalHargaFormatted = Utils.formatRupiah(totalHarga);
+
+				// Add the formatted row to the ArrayList
+				rows.add(new Object[]{
+						rs.getString("Nama Kost"),
+						hargaPerBulanFormatted,
+						rs.getInt("Lama Sewa"),
+						totalHargaFormatted,
+						rs.getString("Tanggal Transaksi")
+				});
+			}
+
+			// Create a new table model with headers matching the result set
+			String[] columnNames = {"Nama Kost", "Harga Per Bulan", "Lama Sewa", "Total Harga", "Tanggal Transaksi"};
+			DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+			// Add the formatted rows to the table model
+			for (Object[] row : rows) {
+				model.addRow(row);
+			}
+
+			return model;
 		} catch (SQLException e) {
 			System.out.println("Error: " + e.getMessage());
 			return null;
 		}
-
 	}
 
 	/**
