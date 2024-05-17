@@ -55,9 +55,9 @@ mereka yang di register. Autentikasi user harus memastikan keabsahan akses user.
 Kamu dapat menjalankan repositori ini di IDE Java kamu. Pastikan kamu memiliki `Java Development Kit (JDK)` yang sudah diinstal.
 > [!IMPORTANT]    
 > Pastikan Tools berikut sudah terinstal di perangkat kamu!.
-> - Git
-> - NodeJS
-> - Xampp
+> - [Git](https://git-scm.com/downloads)
+> - [NodeJS](https://nodejs.org/en/download/prebuilt-installer)
+> - [Xampp](https://www.apachefriends.org/download.html) 
 1. Jalankan perintah berikut di Terminal atau CMD untuk mengunduh repositori ini:
 
        git clone https://github.com/Abizar14/saykost-java.git
