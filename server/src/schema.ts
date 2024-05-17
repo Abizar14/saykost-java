@@ -7,17 +7,18 @@ export const users = mysqlTable('users', {
   phoneNumber: text('phone_number').unique().notNull(),
   username: text('username').unique().notNull(),
   password: text('password').notNull(),
-  // role: mysqlEnum('role', ['admin', 'customer']).notNull(),
   role: text('role', { enum: ['admin', 'customer'] }).notNull(),
   createdAt: timestamp('created_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
 });
 export type User = typeof users.$inferSelect;
+
 export const categories = mysqlTable('categories', {
   id: int('id').autoincrement(),
   name: text('name').notNull(),
 });
+export type Category = typeof categories.$inferSelect;
 
 export const boardingHouses = mysqlTable('boarding_houses', {
   id: int('id').autoincrement(),
@@ -38,6 +39,7 @@ export const boardingHouses = mysqlTable('boarding_houses', {
     onDelete: 'cascade',
   }),
 });
+export type BoardingHouse = typeof boardingHouses.$inferSelect;
 
 export const transactions = mysqlTable('transactions', {
   id: int('id').autoincrement(),
@@ -53,3 +55,4 @@ export const transactions = mysqlTable('transactions', {
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
 });
+export type Transaction = typeof transactions.$inferSelect;

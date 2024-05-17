@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "bfbce2ed-7d24-42d2-bec6-3dcd8e71ec88",
-  "prevId": "9663167f-bb49-483d-85f7-8b21dad28b71",
+  "id": "6dd5d055-316c-47a0-8f7f-516bacdb8302",
+  "prevId": "bfbce2ed-7d24-42d2-bec6-3dcd8e71ec88",
   "tables": {
     "boarding_houses": {
       "name": "boarding_houses",
@@ -11,7 +11,7 @@
           "name": "id",
           "type": "int",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": true
         },
         "name": {
@@ -115,7 +115,14 @@
           "onUpdate": "no action"
         }
       },
-      "compositePrimaryKeys": {},
+      "compositePrimaryKeys": {
+        "boarding_houses_id": {
+          "name": "boarding_houses_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
       "uniqueConstraints": {}
     },
     "categories": {
