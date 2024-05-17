@@ -81,7 +81,7 @@ Kamu dapat menjalankan repositori ini di IDE Java kamu. Pastikan kamu memiliki `
 9. Buka file `pom.xml`, lalu perhatikan didalam tag `<properties><properties>` pada tag `maven.compiler.` ubah sesuai versi compiler java kamu!.
 10. Build project untuk memuat dependencies.
 > [!WARNING]
-> Jika saat melakukan build terdapat error, maka download dan install manual dependencies yang sesuai dengan nama dan versinya.
+> Jika saat melakukan build terdapat error, maka download dan install manual dependencies (`.jar files`) yang sesuai dengan nama dan versinya.
 10. Jika sudah sukses melakukan build, pada directory `src/main/java/client` jalankan class `Login.java`
 11. Login menggunakan data user berikut:
     - admin:
