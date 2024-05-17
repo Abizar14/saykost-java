@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "bfbce2ed-7d24-42d2-bec6-3dcd8e71ec88",
-  "prevId": "9663167f-bb49-483d-85f7-8b21dad28b71",
+  "id": "b91948fb-0dae-4247-b08b-3b8cb3b06abd",
+  "prevId": "fa41ed02-7729-48c6-bb04-1670493b6d24",
   "tables": {
     "boarding_houses": {
       "name": "boarding_houses",

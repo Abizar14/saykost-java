@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "bfbce2ed-7d24-42d2-bec6-3dcd8e71ec88",
-  "prevId": "9663167f-bb49-483d-85f7-8b21dad28b71",
+  "id": "fa41ed02-7729-48c6-bb04-1670493b6d24",
+  "prevId": "6494c239-1272-47e8-ad80-2125ccad06de",
   "tables": {
     "boarding_houses": {
       "name": "boarding_houses",
@@ -11,7 +11,7 @@
           "name": "id",
           "type": "int",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": true
         },
         "name": {
@@ -115,7 +115,14 @@
           "onUpdate": "no action"
         }
       },
-      "compositePrimaryKeys": {},
+      "compositePrimaryKeys": {
+        "boarding_houses_id": {
+          "name": "boarding_houses_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
       "uniqueConstraints": {}
     },
     "categories": {
@@ -125,7 +132,7 @@
           "name": "id",
           "type": "int",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": true
         },
         "name": {
@@ -138,7 +145,14 @@
       },
       "indexes": {},
       "foreignKeys": {},
-      "compositePrimaryKeys": {},
+      "compositePrimaryKeys": {
+        "categories_id": {
+          "name": "categories_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
       "uniqueConstraints": {}
     },
     "transactions": {
@@ -148,7 +162,7 @@
           "name": "id",
           "type": "int",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": true
         },
         "rental_duration": {
@@ -217,7 +231,14 @@
           "onUpdate": "no action"
         }
       },
-      "compositePrimaryKeys": {},
+      "compositePrimaryKeys": {
+        "transactions_id": {
+          "name": "transactions_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
       "uniqueConstraints": {}
     },
     "users": {
@@ -227,7 +248,7 @@
           "name": "id",
           "type": "int",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": true
         },
         "full_name": {
@@ -276,7 +297,14 @@
       },
       "indexes": {},
       "foreignKeys": {},
-      "compositePrimaryKeys": {},
+      "compositePrimaryKeys": {
+        "users_id": {
+          "name": "users_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
       "uniqueConstraints": {
         "users_phone_number_unique": {
           "name": "users_phone_number_unique",

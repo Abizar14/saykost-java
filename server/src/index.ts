@@ -2,28 +2,19 @@ import express, { Express } from 'express';
 import { db } from './db/db';
 import * as schema from './schema';
 import { usersSeed } from './seeds/users';
+import { categoriesSeed } from './seeds/categories';
 
 const app: Express = express();
 const port = 3000;
-const usersData = usersSeed;
-app.get('/', async (req, res) => {
-  const users = await db.insert(schema.users).values([
-    {
-      fullName: 'joko',
-      phoneNumber: '08123',
-      username: 'joko',
-      password: 'joko',
-      role: 'customer',
-    },
-    {
-      fullName: 'wak sunari',
-      phoneNumber: '081234',
-      username: 'waksunari',
-      password: 'waksunari',
-      role: 'admin',
-    },
-  ]);
+
+app.get('/users', async (req, res) => {
+  const users = await db.insert(schema.users).values(usersSeed);
   res.json(users);
+});
+
+app.get('/categories', async (req, res) => {
+  const categories = await db.insert(schema.categories).values(categoriesSeed);
+  res.json(categories);
 });
 
 app.listen(port, async () => {

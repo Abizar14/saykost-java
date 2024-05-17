@@ -1,0 +1,1 @@
+ALTER TABLE `categories` DROP INDEX `categories_name_unique`;
