@@ -183,6 +183,11 @@ public class MenuDashboard extends javax.swing.JPanel {
                 txtSearchCustomerMouseClicked(evt);
             }
         });
+        txtSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchCustomerActionPerformed(evt);
+            }
+        });
         txtSearchCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchCustomerKeyReleased(evt);
@@ -259,6 +264,10 @@ public class MenuDashboard extends javax.swing.JPanel {
             tblCustomer.setModel(UserService.getDataUser());
         }
     }//GEN-LAST:event_txtSearchCustomerKeyReleased
+
+    private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchCustomerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel10;
