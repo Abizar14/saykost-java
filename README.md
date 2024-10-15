@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Abizar14/saykost-java/blob/master/img/SAY1.png" width="300px">
+  <img src="https://github.com/user-attachments/assets/3529688b-207d-49d6-8de3-f4fc85470c2f" width="250px">
 </p>  
 
 Selamat datang di repositori "Say Kost". Repositori ini merupakan aplikasi untuk memenuhi tugas Ujian Akhir Semester 4.
@@ -91,4 +91,11 @@ Kamu dapat menjalankan repositori ini di IDE Java kamu. Pastikan kamu memiliki `
       - username: joko
       - password: joko
 
+## Hasil Aplikasi
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/657a47b1-c1bd-4358-bd80-dbcbdee1118c" width="500px">
+  <img src="https://github.com/user-attachments/assets/7b4cb05e-3cdf-47ae-9688-4655f00d04d1" width="500px">
+  <img src="https://github.com/user-attachments/assets/3603b5b0-2963-410a-8039-4b239fbb6b78" width="500px">
+</p>  
 <h1 align="center">Selamat Menggunakan 😉</h1>
